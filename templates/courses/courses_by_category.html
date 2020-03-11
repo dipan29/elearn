@@ -64,10 +64,7 @@
                                         <div class="course-details">
                                             <a href="{% url 'courses:course-details' course.slug %}"
                                                class="course-title">{{ course.title }}</a>
-                                            {#                                            {{--<a href="" class="course-instructor">--}}#}
-                                            {#                                                {{--<span class="instructor-name">first_name last_name</span>--}}#}
-                                            {#                                                {{-----}}#}
-                                            {#                                            {{--</a>--}}#}
+                                         
                                             <div class="course-subtitle">
                                                 {{ course.short_description }}
                                             </div>
@@ -88,7 +85,6 @@
                                         <div class="course-price-rating">
                                             <div class="course-price">
                                                 <span class="current-price">${{ course.price }}</span>
-                                                {#                                                {{--<span class="original-price">$300</span>--}}#}
                                             </div>
                                             <div class="rating">
                                                 <i class="fas fa-star filled"></i>
@@ -107,7 +103,6 @@
                         </ul>
                     </div>
                     <nav>
-                        {#                        {{ $courses->links() }}#}
                     </nav>
                 </div>
             </div>

@@ -2,6 +2,8 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.utils.text import slugify
 from django.utils.timezone import now
+from embed_video.fields import EmbedVideoField
+
 
 from accounts.models import User
 
@@ -31,7 +33,7 @@ class Course(models.Model):
     price = models.FloatField(validators=[MinValueValidator(9.99)])
     level = models.CharField(max_length=20)
     thumbnail = models.ImageField(upload_to='thumbnails/')
-    video_url = models.CharField(max_length=100)
+    video = EmbedVideoField(max_length=500, blank=True)
     is_published = models.BooleanField(default=True)
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(default=now)
@@ -47,8 +49,8 @@ class Course(models.Model):
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     title = models.CharField(max_length=100)
-    duration = models.FloatField(validators=[MinValueValidator(0.30), MaxValueValidator(30.00)])
-    video_url = models.CharField(max_length=100)
+    duration = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000)])
+    video = EmbedVideoField(max_length=500, blank=True)
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(default=now)
 

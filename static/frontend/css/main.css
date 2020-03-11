@@ -1750,7 +1750,7 @@ input:focus {
     course header
 */
 section.course-header-area {
-    background-color: #29303b;
+    background: radial-gradient(circle farthest-corner at 35% 90%, #c48821, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #d1962f, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);
     color: #fff;
     padding: 60px 0;
 }
@@ -1823,11 +1823,12 @@ section.course-header-area {
     course sidebar
 */
 .course-sidebar {
-    background-color: #fff;
-    box-shadow: 0 0 1px 1px rgba(20, 23, 28, .1), 0 3px 1px 0 rgba(20, 23, 28, .1);
+    background-color: #F7F8FA;
+    box-shadow: 9px 9px 16px rgb(163,177,198,0.6), -9px -9px 10px    rgba(255,255,255, 0.4);
     border-radius: 4px;
     color: #505763;
     padding: 3px;
+    top: 2rem;
     position: relative;
     margin-top: -250px;
     z-index: 10;

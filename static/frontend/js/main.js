@@ -110,10 +110,6 @@ $(window).scroll(function () {
 
 
 $(document).ready(function(){
-
-
-
-
     //open search form
 	$('.mobile-search-trigger').on('click', function(event){
 		event.preventDefault();
@@ -275,19 +271,10 @@ $(document).ready(function(){
         width: 335
     });
 
-    if($('div').hasClass('course-preview-video')){
-        jwplayer("course-preview-video").setup({
-            "file": "http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4",
-            "image": "http://mrfatta.com/wp-content/uploads/2015/05/CarWrap_Sample.jpg",
-            "width": "100%",
-            aspectratio: "16:9",
-            listbar: {
-                position: 'right',
-                size: 260
-            },
-        });
-    }
-
-
-
+    $('.play-btn').click(()=>{
+        $('#vid').show();
+        $('.img-fluid').hide();
+        $('.play-btn').hide();
+        $('.preview-text').hide();
+    });
 });
