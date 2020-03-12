@@ -140,27 +140,30 @@
                                         <div class="col-lg-4">
                                             <div class="reviewer-details clearfix">
                                                 <div class="reviewer-img float-left">
-                                                    <img src="" alt="">
+                                                    <img src="{% static 'images/avatar.png' %}" alt="">
                                                 </div>
                                                 <div class="review-time">
-                                                    <div class="time">
-                                                        {{ cmnt.created_date }}
-                                                    </div>
+                                                    
                                                     <div class="reviewer-name">
-                                                        {{ cmnt.author.first_name}}
+                                                        <strong>{{ cmnt.author.first_name}}</strong>
+                                                    </div>
+                                                    <div class="time">
+                                                       <small>{{ cmnt.created_date }}</small>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-8">
-                                            <div class="review-details">
+                                            <div class="review-details container">
                                               
                                                 <div class="review-text">
-                                                    {{ cmnt.text }}
+                                                    <em>"{{ cmnt.text }}"</em>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
+                                    <hr>
                                     {% endfor %}
                                 </li>
                             </ul>

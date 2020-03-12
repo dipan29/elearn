@@ -63,7 +63,7 @@ class Lesson(models.Model):
 class Comment(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True) 
-    text = models.TextField(max_length=500) 
+    text = models.TextField(max_length=200) 
     created_date = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.text

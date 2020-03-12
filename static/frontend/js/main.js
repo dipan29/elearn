@@ -115,7 +115,6 @@ $(document).ready(function(){
 		event.preventDefault();
 		toggleSearch();
 	});
-
     //mobile - open lateral menu clicking on the menu icon
 	$('.mobile-nav-trigger').on('click', function(event){
 		if(!checkWindowWidth(768)) event.preventDefault();
