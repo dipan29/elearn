@@ -116,22 +116,22 @@ class StartLessonView(DetailView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
 
-    def get_object(self, queryset=None):
-        if queryset is None:
-            queryset = self.get_queryset()
+    # def get_object(self, queryset=None):
+    #     if queryset is None:
+    #         queryset = self.get_queryset()
 
-        course = get_object_or_404(Course, slug=self.kwargs["slug"])
-        queryset = queryset.filter(course=course)
-        try:
-            # Get the single item from the filtered queryset
-            obj = queryset[:1].get()
-            url = obj.video_url
-            url = url.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")
-            obj.video_url = url
-        except queryset.model.DoesNotExist:
-            raise Http404("No %(verbose_name)s found matching the query" %
-                          {'verbose_name': self.model._meta.verbose_name})
-        return obj
+    #     course = get_object_or_404(Course, slug=self.kwargs["slug"])
+    #     queryset = queryset.filter(course=course)
+    #     try:
+    #         # Get the single item from the filtered queryset
+    #         obj = queryset[:1].get()
+    #         url = obj.video_url
+    #         url = url.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")
+    #         obj.video_url = url
+    #     except queryset.model.DoesNotExist:
+    #         raise Http404("No %(verbose_name)s found matching the query" %
+    #                       {'verbose_name': self.model._meta.verbose_name})
+    #     return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -150,22 +150,22 @@ class LessonView(DetailView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(self.request, *args, **kwargs)
 
-    def get_object(self, queryset=None):
-        if queryset is None:
-            queryset = self.get_queryset()
+    # def get_object(self, queryset=None):
+    #     if queryset is None:
+    #         queryset = self.get_queryset()
 
-        lesson_id = self.kwargs['id']
-        queryset = queryset.filter(id=lesson_id)
-        try:
-            # Get the single item from the filtered queryset
-            obj = queryset.get()
-            url = obj.video_url
-            url = url.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")
-            obj.video_url = url
-        except queryset.model.DoesNotExist:
-            raise Http404("No %(verbose_name)s found matching the query" %
-                          {'verbose_name': self.model._meta.verbose_name})
-        return obj
+    #     lesson_id = self.kwargs['id']
+    #     queryset = queryset.filter(id=lesson_id)
+    #     try:
+    #         # Get the single item from the filtered queryset
+    #         obj = queryset.get()
+    #         url = obj.video_url
+    #         url = url.replace("https://www.youtube.com/watch?v=", "https://www.youtube.com/embed/")
+    #         obj.video_url = url
+    #     except queryset.model.DoesNotExist:
+    #         raise Http404("No %(verbose_name)s found matching the query" %
+    #                       {'verbose_name': self.model._meta.verbose_name})
+    #     return obj
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -190,11 +190,13 @@ class ProfileUpdateView(UpdateView):
         return {"first_name": self.request.user.first_name, "last_name": self.request.user.last_name}
 
     def get_object(self, queryset=None):
-        return get_object_or_404(self.model, pk=self.request.user.pk)
+        return get_object_or_404(self.model, email=self.request.user.email)
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+            obj = self.get_object()
+            obj.first_name = self.get_initial()['first_name']
+            obj.last_name = self.get_initial()['last_name']
+            obj.save()
+        return super().post(request, *args, **kwargs)

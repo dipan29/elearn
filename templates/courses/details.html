@@ -77,7 +77,9 @@
                                             <li class="lecture has-preview">
                                                 <span data-toggle="modal" data-target="#{{ lesson.title }}" data-id="{{ lesson.title }}" href="#myModal" class="lecture-title">{{ lesson.title }}</span>
                                                 <span class="lecture-time float-right">{{ lesson.duration }} mins</span>
+                                                {% if is_enrolled %}
                                                 {% include 'partials/modal.html' with lesson=lesson %}
+                                                {% endif %}
                                             </li>
                                         {% endfor %}
                                     </ul>
@@ -102,7 +104,7 @@
                         <div class="description-title">Description</div>
                         <div class="description-content-wrap">
                             <div class="description-content">
-                                {{ course.description }}
+                                {{ course.content|safe }}
                             </div>
                         </div>
                     </div>
@@ -122,7 +124,10 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6 col-lg-offset-4">
-                                {% comment %} Might just add a form here {% endcomment %}
+                                <form method="POST" action="{% url 'courses:course-details' course.slug %}" class="post-form">{% csrf_token %}
+                                    {{ comment_form.as_p }}
+                                    <button type="submit" class="save btn btn-default">Save</button>
+                                </form>
                             </div>
                            
                         </div>
@@ -130,6 +135,7 @@
                             <div class="reviews-title">Reviews</div>
                             <ul>
                                 <li>
+                                    {% for cmnt in comments %}
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <div class="reviewer-details clearfix">
@@ -138,10 +144,10 @@
                                                 </div>
                                                 <div class="review-time">
                                                     <div class="time">
-                                                        Review Time
+                                                        {{ cmnt.created_date }}
                                                     </div>
                                                     <div class="reviewer-name">
-                                                        Name of Student
+                                                        {{ cmnt.author.first_name}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,11 +156,12 @@
                                             <div class="review-details">
                                               
                                                 <div class="review-text">
-                                                    Review Content
+                                                    {{ cmnt.text }}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    {% endfor %}
                                 </li>
                             </ul>
                         </div>
@@ -188,12 +195,12 @@
                                 {% if is_enrolled %}
                                     <button class="btn btn-add-cart" type="button"
                                             style="background-color: #00796b; border-color: #08796f; color: #ffffff">
-                                        Go to course
+                                        Already Purchased
                                     </button>
                                 {% else %}
                                     {% if is_in_cart %}
                                         {#                                    <a href="" class="btn btn-buy-now" id="course_2" onclick="handleBuyNow(this)">Buy#}
-                                        {#                                        now</a>#}
+                                        {#                                           now</a>#}
                                         <button class="btn btn-add-cart" type="button"
                                                 style="background-color: #ec5252; border-color: #ec5252; color: #ffffff">
                                             Added to cart

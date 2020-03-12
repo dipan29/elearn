@@ -3,7 +3,9 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils.timezone import now
 from embed_video.fields import EmbedVideoField
-
+from ckeditor.fields import RichTextField
+from django.conf import settings
+from django.utils import timezone 
 
 from accounts.models import User
 
@@ -26,7 +28,7 @@ class Course(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     slug = models.SlugField(max_length=200, unique=True, primary_key=True, auto_created=False)
     short_description = models.TextField(blank=False, max_length=60)
-    description = models.TextField(blank=False)
+    content = RichTextField()
     outcome = models.CharField(max_length=200)
     requirements = models.CharField(max_length=200)
     language = models.CharField(max_length=200)
@@ -56,3 +58,12 @@ class Lesson(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True) 
+    text = models.TextField(max_length=500) 
+    created_date = models.DateTimeField(default=timezone.now)
+    def __str__(self):
+        return self.text

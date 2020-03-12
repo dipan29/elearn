@@ -1,5 +1,4 @@
 {% extends 'layouts/base.html' %}
-
 {% load static %}
 
 {% block content %}
@@ -72,9 +71,9 @@
                     <div class="col-lg-3">
                         <div class="course-box-wrap">
                             <div class="course-box">
-                                <a href="">
+                                <a href="{% url 'courses:course-details' enroll.course.slug %}">
                                     <div class="course-image">
-                                        <img src="{% static 'images/learning.jpg' %}" alt="" class="img-fluid">
+                                        <img src="{{ enroll.course.thumbnail.url }}" alt="" class="img-fluid">
                                         <span class="play-btn"></span>
                                     </div>
                                 </a>
@@ -83,35 +82,11 @@
                                         <h5 class="title">{{ enroll.course.title }}</h5>
                                     </a>
                                     <p class="instructors"></p>
-                                    <div class="rating your-rating-box"
-                                         data-toggle="modal" data-id="{{ enroll.course.id }}"
-                                         data-target="#EditRatingModal">
-
-                                        {#                                        @php#}
-                                        {#                                        $my_rating = $enroll->course->review()['rating'];#}
-                                        {#                                        @endphp#}
-                                        {#                                        @for($i = 1; $i <= 5; $i++)#}
-                                        {#                                        @if ($i <= $my_rating)#}
-                                        {#                                        <i class="fas fa-star filled"></i>#}
-                                        {#                                        @else#}
-                                        {#                                        <i class="fas fa-star"></i>#}
-                                        {#                                        @endif#}
-                                        {#                                        @endfor#}
-                                        <p class="your-rating-text" id="ratings">
-                                            <span class="your">Your</span>
-                                            <span class="edit">Edit</span>
-                                            Rating
-                                        </p>
-                                    </div>
                                 </div>
                                 <div class="row" style="padding: 5px;">
                                     <div class="col-md-6">
                                         <a href="{% url 'courses:course-details' enroll.course.slug %}" class="btn">Course
                                             Details</a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a href="{% url 'accounts:course-lessons' enroll.course.slug %}" class="btn">Start
-                                            lesson</a>
                                     </div>
                                 </div>
                             </div>
