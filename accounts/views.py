@@ -12,6 +12,9 @@ from root.models import Enroll
 from .models import User
 from .forms import UserRegistrationForm, UserLoginForm, ProfileUpdateForm
 
+from validate_email import validate_email
+
+
 
 class RegisterView(CreateView):
     model = User
@@ -37,10 +40,16 @@ class RegisterView(CreateView):
 
         if user_form.is_valid():
             user = user_form.save(commit=False)
-            password = user_form.cleaned_data.get("password1")
-            user.set_password(password)
-            user.save()
-            return redirect('accounts:login')
+            email_valid = validate_email(user.email, verify=True)
+            if(email_valid == None or email_valid!=True):
+                invalid_email = True
+                print("Invalid Email Address")
+                return render(request, 'accounts/form.html', {'form': user_form, 'invalid_email': invalid_email})
+            else:
+                password = user_form.cleaned_data.get("password1")
+                user.set_password(password)
+                user.save()
+                return redirect('accounts:login')
         else:
             return render(request, 'accounts/form.html', {'form': user_form})
 

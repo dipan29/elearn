@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load total_minutes %}
 
 {% load static %}
 
@@ -10,7 +11,7 @@
                 <div class="col">
                     <nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="<?php echo site_url('home'); ?>"><i
+                            <li class="breadcrumb-item"><a href="{% url 'root:home' %}"><i
                                     class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item active">
                                 Search Results
@@ -31,7 +32,7 @@
                 <div class="col">
                     <div class="category-course-list">
                         <ul>
-                            {% for course in courses %}
+                            {% for course in search_results %}
                                 <li>
                                     <div class="course-box-2">
                                         <div class="course-image">
@@ -43,9 +44,6 @@
                                         <div class="course-details">
                                             <a href="{% url 'courses:course-details' course.slug %}"
                                                class="course-title">{{ course.title }}</a>
-                                            <a href="" class="course-instructor">
-                                                <span class="instructor-name">Instructor Name</span>
-                                            </a>
                                             <div class="course-subtitle">
                                                 {{ course.short_description|truncatewords:30 }}
                                             </div>
@@ -54,7 +52,7 @@
                                                 {{ course.lessons.count }}
                                             </span>
                                                 <span class=""><i class="far fa-clock"></i>
-                                                    20:00:00
+                                                    {{ course.lessons|total_time }} 
                                             </span>
                                                 <span class="">
                                                 <i class="fas fa-closed-captioning"></i>{{ course.language }}
@@ -63,19 +61,7 @@
                                         </div>
                                         <div class="course-price-rating">
                                             <div class="course-price">
-                                                <span class="current-price">{{ course.price }}</span>
-                                            </div>
-                                            <div class="rating">
-
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <span class="d-inline-block average-rating">3</span>
-                                            </div>
-                                            <div class="rating-number">
-                                                20 Ratings
+                                                <span class="current-price">₹{{ course.price }}</span>
                                             </div>
                                         </div>
                                     </div>

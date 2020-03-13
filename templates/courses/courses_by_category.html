@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %}
 
 {% load static %}
+{% load total_minutes %}
 
 {% block content %}
 
@@ -58,7 +59,7 @@
                                     <div class="course-box-2">
                                         <div class="course-image">
                                             <a href="{% url 'courses:course-details' course.slug %}">
-                                                <img src="{% static 'images/learning.jpg' %}" alt="" class="img-fluid">
+                                                <img src="{{ course.thumbnail.url }}" alt="" class="img-fluid">
                                             </a>
                                         </div>
                                         <div class="course-details">
@@ -75,26 +76,16 @@
                                                 </span>
                                                 <span class="">
                                                     <i class="far fa-clock"></i>
-                                                    3 hours
+                                                    {{ course.lessons|total_time }}
                                                 </span>
                                                 <span class="">
-                                                    <i class="fas fa-closed-captioning"></i>English
+                                                    <i class="fas fa-closed-captioning"></i>{{ course.language }}
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="course-price-rating">
                                             <div class="course-price">
-                                                <span class="current-price">${{ course.price }}</span>
-                                            </div>
-                                            <div class="rating">
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star"></i>
-                                                <span class="d-inline-block average-rating">5</span>
-                                            </div>
-                                            <div class="rating-number">
-                                                33 Ratings
+                                                <span class="current-price">₹{{ course.price }}</span>
                                             </div>
                                         </div>
                                     </div>

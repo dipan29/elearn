@@ -42,7 +42,7 @@
                                                     <div class="cart-course-wrapper">
                                                         <div class="image">
                                                             <a href="">
-                                                                <img src="{% static 'images/learning.jpg' %}" alt=""
+                                                                <img src="{{ course.thumbnail.url }}" alt=""
                                                                      class="img-fluid">
                                                             </a>
                                                         </div>
@@ -53,10 +53,10 @@
                                                         </div>
                                                         <div class="move-remove">
                                                             <div>
-                                                                <form action="" method="post">
+                                                                <form action="{% url 'cart:cart_remove' course.slug %}" method="post">
                                                                     {% csrf_token %}
                                                                     <input type="hidden" value="{{ course.slug }}">
-                                                                    <input type="submit" class="btn-success"
+                                                                    <input type="submit" style="background:#f44336" class="btn btn-danger"
                                                                            value="Remove">
                                                                 </form>
                                                             </div>

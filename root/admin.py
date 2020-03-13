@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import Enroll
 # Register your models here.
 class EnrollAdmin(admin.ModelAdmin):
-    list_display = ('user', 'course',)
-    list_filter = ('user', 'course',)
+    list_display = ('user', 'course', 'enable_access')
+    list_filter = ('user', 'course', 'enable_access')
 
 
 admin.site.register(Enroll, EnrollAdmin)

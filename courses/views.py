@@ -37,8 +37,10 @@ class CourseDetailView(DetailView):
         course = self.get_object(self.get_queryset())
         context['comments'] = Comment.objects.filter(course=course).order_by("-created_date")
         if self.request.user.is_authenticated:
-            if Enroll.objects.filter(course=course, user_id=self.request.user.id).exists():
+            enrollment = Enroll.objects.filter(course=course, user_id=self.request.user.id)
+            if enrollment.exists():
                 context['is_enrolled'] = True
+                context['has_access'] = True if enrollment[0].enable_access == True else False
             else:
                 cart = Cart(self.request)
                 context['is_in_cart'] = cart.has_course(course)
