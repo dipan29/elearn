@@ -26,9 +26,12 @@ class SearchView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        return self.model.objects.filter(title__contains=self.request.GET['q'])
+        return self.model.objects.filter(title__icontains=self.request.GET['q'])
 
     def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
-            context['search_results'] = self.model.objects.all().order_by('?')
+            context['search_results'] = self.get_queryset()
             return context
+
+def handler404(request, exception):
+    return render(request, '404.html')

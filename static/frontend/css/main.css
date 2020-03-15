@@ -4019,151 +4019,49 @@ section.purchase-history-list-area {
 /*
     footer style
 */
-.footer-top-widget-area {
-    border-top: 1px solid #e8e9eb;
-    padding: 40px 0;
-    background-color: #fff;
-}
-
-.footer-widget.link-widget ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.footer-widget.link-widget ul li:not(:last-child) {
-    margin-bottom: 8px;
-}
-
-.footer-widget.link-widget ul a {
-    font-size: 13px
-}
-
-.language-widget button {
-    padding: 9px 18px;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 18px;
-    min-width: 160px;
-    text-align: left;
-    color: #686f7a;
-    background-color: #fff;
-    border: 1px solid #505763;
-    border-radius: 2px;
-}
-
-.language-widget button:hover,
-.language-widget button:focus {
-    color: #686f7a !important;
-    background-color: #e8e9eb !important;
-    border-color: #505763;
-}
-
-.language-widget button i {
-    font-size: 11px;
-    margin-right: 10px;
-}
-
-.language-widget .dropdown-menu {
-    box-shadow: 0 4px 16px rgba(20, 23, 28, .25);
-    border-radius: 2px;
-    border: 0;
-    margin-bottom: 2px;
-    width: 160px;
-}
-
-.language-widget .dropdown-menu a {
-    padding: 6px 14px;
-    color: #505763;
-    font-weight: 400;
-    line-height: 1.43;
-    font-size: 13px;
-}
-
-.language-widget .dropdown-menu a:hover,
-.language-widget .dropdown-menu a:focus {
-    background-color: #f2f3f5;
-}
-
-.language-widget .dropdown-toggle {
-    position: relative;
-}
-
-.language-widget .dropdown-toggle::after {
-    position: absolute;
-    top: 17px;
-    right: 14px;
-    transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    -ms-webkit-transform: rotate(180deg);
-}
-
 .footer-area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
     background-color: #fff;
-    padding: 30px 0;
+    color: #BC3890;
+    font-size: small;
     border-bottom: 6px solid #BC3890;
     border-top: 1px solid #e8e9eb;
 }
-
-.copyright-text {
-    color: #686f7a;
-    font-size: 13px;
-    margin-bottom: 0;
+.footer-area div{
+    float: left;
+    display: inline;
+    padding: 1rem .3rem;
 }
-
-.copyright-text img {
-    margin-right: 20px
+#copyright{
+    text-align: right;
+    color: rgba(0, 0, 0, 0.5);
 }
-
-.footer-menu .nav-item:not(:last-child) {
-    margin-right: 20px;
+ /* 404 Handler */
+.not-found {
+    height: 100%;
+    width:100%;
 }
-
-.footer-menu .nav-link {
-    padding: 6px 0;
-    font-size: 13px;
+.not-found img {
+    padding: 1em auto;
+    margin:auto;
 }
-
-.payment-in-modal form .stripe {
-    color: #fff;
-    background-color: #008cde;
-    border-color: #0698dc;
-    font-size: 16px;
-    font-weight: 700;
-    height: 50px;
-    width: 100%;
-    padding: 11px 12px;
-    border-radius: 2px;
-}
-
-.payment-in-modal form .paypal {
-    color: #fff;
-    background-color: #008cde;
-    border-color: #0698dc;
-    font-size: 16px;
-    font-weight: 700;
-    height: 50px;
-    width: 100%;
-    padding: 11px 12px;
-    border-radius: 2px;
-}
-
-.purchased a {
-    width: 100%;
-    border: 0;
-    color: #fff;
-    background-color: #910072;
-    padding: 11px 12px;
-    font-size: 15px;
-    line-height: 1.43;
-    border-radius: 2px;
-    font-weight: 600;
-    margin-top: 20px;
-    display: block;
-    text-align: center;
-}
-
-.purchased a:hover,
-.purchased a:focus {
-    background: #003440;
-}
+@media screen and (max-width: 800px) {
+    .footer-area{
+        position: relative;
+        text-align: center;
+        padding: 0 0;
+        font-size: small;
+        position: relative;
+    }
+    .footer-area div{
+        float: left;
+        display: inline;
+        padding: .3rem 0; 
+    }
+    #copyright{
+        text-align: left;
+    }
+  }

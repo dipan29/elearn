@@ -79,13 +79,6 @@
                                         <div class="course-details">
                                             <h5 class="title">{{ top_course.title }}</h5>
                                             <p class="instructors">{{ top_course.short_description }}</p>
-                                            <!-- <div class="rating">
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star filled"></i>
-                                                <i class="fas fa-star"></i>
-                                                <span class="d-inline-block average-rating">5</span>
-                                            </div> -->
                                             <p class="price text-right">
                                                 ₹{{ top_course.price }}
                                             </p>
@@ -99,11 +92,7 @@
                                         <div class="course-title">
                                             <a href="#">{{ top_course.title }}</a>
                                         </div>
-                                        <!-- <div class="course-category">
-                                            <span class="course-badge best-seller">Best seller</span>
-                                            in
-                                            <a href="">PHP</a>
-                                        </div> -->
+                                     
                                         <div class="course-meta">
                                             <span class=""><i class="fas fa-play-circle"></i>
                                                 0 Lessons
@@ -122,24 +111,12 @@
                                             </ul>
                                         </div>
                                         <div class="popover-btns">
-                                            {#                                            @if(auth()->check() && \App\Enroll::whereCourseId($top_course->id)->first()#}
-                                            {#                                            !== null)#}
-                                            {#                                            <div class="purchased">#}
-                                            {#                                                <a href="#">Already purchased</a>#}
-                                            {#                                            </div>#}
-                                            {#                                            @elseif(Cart::get($top_course->id) !== null)#}
-                                            {#                                            <button type="button"#}
-                                            {#                                                    class="btn add-to-cart-btn addedToCart big-cart-button-1"#}
-                                            {#                                                    id="1">#}
-                                            {#                                                Added To Cart#}
-                                            {#                                            </button>#}
-                                            {#                                            @else#}
+                      
                                             <button type="button"
                                                     class="btn add-to-cart-btn addedToCart big-cart-button-1"
                                                     id="1">
                                                 Add To Cart
                                             </button>
-                                            {#                                            @endif#}
                                             <button type="button"
                                                     class="wishlist-btn"
                                                     title="Add to wishlist"

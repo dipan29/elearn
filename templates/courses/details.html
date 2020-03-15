@@ -122,10 +122,10 @@
                             Student feedback
                         </div>
                         <div class="row">
-                            <div class="col-lg-6 col-lg-offset-4">
+                            <div class="col-lg-12 col-lg-offset-4">
                                 <form method="POST" action="{% url 'courses:course-details' course.slug %}" class="post-form">{% csrf_token %}
                                     {{ comment_form.as_p }}
-                                    <button type="submit" class="save btn btn-default">Save</button>
+                                    <button type="submit" class="save btn btn-default">Comment</button>
                                 </form>
                             </div>
                            
