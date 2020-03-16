@@ -32,7 +32,7 @@ class UserLoginForm(forms.Form):
             if not self.user.check_password(password):
                 raise forms.ValidationError("Password Does not Match.")
             if not self.user.is_active:
-                raise forms.ValidationError("User is not Active. Please confirm your email address")
+                raise forms.ValidationError("Account is not active yet. Please check your email and confirm your email address")
 
         return super(UserLoginForm, self).clean(*args, **kwargs)
 

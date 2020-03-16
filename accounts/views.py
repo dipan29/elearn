@@ -26,7 +26,6 @@ from validate_email import validate_email
 
 def activate(request, uidb64, token):
     try:
-        print('hello')
         uid = urlsafe_base64_decode(uidb64).decode()
         user = User.objects.get(email=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
@@ -35,7 +34,6 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        print("Activated")
         login(request, user)
         return redirect('root:home')
     else:
