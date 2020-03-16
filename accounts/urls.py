@@ -13,5 +13,6 @@ urlpatterns = [
         path('my-courses/<slug:slug>/view', views.StartLessonView.as_view(), name='course-lessons'),
         path('my-courses/<slug:slug>/lessons/<int:id>', views.LessonView.as_view(), name='course-lessons-single'),
         path('profile', views.ProfileUpdateView.as_view(), name='my-profile'),
+        path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     ])),
 ]

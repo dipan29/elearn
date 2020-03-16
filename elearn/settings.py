@@ -9,6 +9,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '32e21k1f8kjn1a2=$x7i=1$=x0@!_c$13xxu^^n(u)3j_js-(k'
 
+# MAIL Server
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'mindwebs.org'
+EMAIL_HOST_USER = 'notification@mindwebs.org'
+EMAIL_HOST_PASSWORD = 'MI?W0X6(Qz={'
+EMAIL_PORT = 587
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -120,6 +127,8 @@ AUTH_PASSWORD_VALIDATORS = [
     #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     # },
 ]
+
+AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.AllowAllUsersModelBackend']
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/

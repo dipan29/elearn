@@ -32,7 +32,7 @@ class UserLoginForm(forms.Form):
             if not self.user.check_password(password):
                 raise forms.ValidationError("Password Does not Match.")
             if not self.user.is_active:
-                raise forms.ValidationError("User is not Active.")
+                raise forms.ValidationError("User is not Active. Please confirm your email address")
 
         return super(UserLoginForm, self).clean(*args, **kwargs)
 
@@ -51,7 +51,6 @@ class UserRegistrationForm(UserCreationForm):
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
         self.fields['password1'].widget.attrs.update({'placeholder': 'Enter password'})
         self.fields['password2'].widget.attrs.update({'placeholder': 'Again password'})
-        # self.fields['email'].widget.attrs['placeholder'] = self.fields['email'].label or 'email@address.nl'
 
     class Meta:
         model = User
@@ -61,11 +60,6 @@ class UserRegistrationForm(UserCreationForm):
                   "email",
                   "password1",
                   "password2")
-
-        # widgets = {
-        #     'password1': forms.TextInput(attrs={'placeholder': 'Password'}),
-        #     'password2': forms.TextInput(attrs={'placeholder': 'Repeat your password'}),
-        # }
 
     def clean_email(self):
         email = self.cleaned_data['email']
