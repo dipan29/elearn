@@ -2080,7 +2080,7 @@ section.course-header-area {
 .what-you-get-box ul li {
     display: flex;
     margin-bottom: 10px;
-    width: 45%;
+    width: 100%;
     padding-left: 26px;
     font-size: 15px;
     position: relative;
@@ -4062,6 +4062,6 @@ section.purchase-history-list-area {
         padding: .3rem 0; 
     }
     #copyright{
-        text-align: left;
+        text-align: center;
     }
   }

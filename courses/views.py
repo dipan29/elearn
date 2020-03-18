@@ -4,6 +4,10 @@ from django.views.generic import DetailView, ListView, FormView
 from django.views import View
 from django.urls import reverse
 from django.views.generic.detail import SingleObjectMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
+
 
 from cart.cart import Cart
 from courses.models import Course, Category, Comment
@@ -53,6 +57,10 @@ class CourseCommentForm(SingleObjectMixin, FormView):
     template_name = 'courses/details.html'
     form_class = CommentForm
     model = Course
+
+    @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(self.request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         if not request.user.is_authenticated:

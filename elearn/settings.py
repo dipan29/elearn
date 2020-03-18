@@ -15,7 +15,7 @@ EMAIL_HOST = 'mindwebs.org'
 EMAIL_HOST_USER = 'notification@mindwebs.org'
 EMAIL_HOST_PASSWORD = 'MI?W0X6(Qz={'
 EMAIL_PORT = 587
-
+DEFAULT_FROM_EMAIL = 'support@instaworthyacademy.com'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

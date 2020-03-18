@@ -2,13 +2,15 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
+
 
 from courses.models import Course
 from root.models import Enroll
 from .cart import Cart
 
-
 @require_POST
+@login_required(login_url=reverse_lazy('accounts:login'))
 def cart_add(request, slug):
     cart = Cart(request)  # create a new cart object passing it the request object
     course = get_object_or_404(Course, slug=slug)

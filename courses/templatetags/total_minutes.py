@@ -14,7 +14,7 @@ def total_time(queryset):
     if mins//60:
         hours = mins//60
         mins = mins - hours*60
-        return str(hours)+(" Hours & " if hours>1 else " Hour & ")+str(mins)+(" Minutes" if mins>1 else "Minute")
+        return str(hours)+(" Hours & " if hours>1 else " Hour ")+str(mins)+(" Minutes" if mins>1 else "Minute")
     else:
         return str(mins)+(" Minutes" if mins>1 else "Minute")
     
