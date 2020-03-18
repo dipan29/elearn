@@ -32,7 +32,7 @@ class Course(models.Model):
     outcome = models.CharField(max_length=200, help_text="Outcome/Achievements after successful completion of the course")
     requirements = models.CharField(max_length=200, help_text="Prequisites for enroll in the Course")
     language = models.CharField(max_length=200, help_text="Medium/Languages used in the lesson videos")
-    price = models.FloatField(validators=[MinValueValidator(9.99)], help_text="Price of the course, to be entered in Indian Currency")
+    price = models.FloatField(validators=[MinValueValidator(9.99)], help_text="Price of the course, to be entered in International Currency")
     level = models.CharField(max_length=20, help_text="Level can be, 1/2/3 or Beginner/Intermidiate/Advance")
     thumbnail = models.ImageField(upload_to='thumbnails/', help_text="This field expects an image file, 480x360 is ideal")
     video = EmbedVideoField(max_length=500, blank=True, help_text="Enter the link to the video from any streaming platform, Vimeo Preffered")
@@ -51,6 +51,7 @@ class Course(models.Model):
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     title = models.CharField(max_length=100, help_text="Enter the Lesson's title")
+    description = RichTextField(help_text="Enter the entire lesson outflow just like you would in a word document", default="Follow the lesson")
     duration = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000)], help_text="Enter video clip duration in Minutes")
     video = EmbedVideoField(max_length=500, blank=True, help_text="Vimeo Video is preffered since it ensure data protection")
     created_at = models.DateTimeField(default=now)
@@ -67,3 +68,14 @@ class Comment(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     def __str__(self):
         return self.text
+
+
+class Tag(models.Model):
+    """
+    Multiple Category mapping for courses, many to many map
+    """
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.course.title + " " +self.category.title
+    

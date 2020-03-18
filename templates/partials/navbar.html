@@ -57,7 +57,7 @@
                                                 </div>
                                                 <div class="user-details">
                                                     <div class="user-name">
-                                                        <span class="hi">hi,</span> {{ request.user.email }}
+                                                        <smaller  style="font-size:0.6em">{{ request.user.email }}</smaller>
                                                     </div>
                                                     <div class="user-email">
                                                         <span class="email">{{ request.user.name }}</span>
@@ -86,6 +86,11 @@
                                     <li class="dropdown-user-logout user-dropdown-menu-item">
                                         <a href="{% url 'accounts:logout' %}">Logout</a>
                                     </li>
+                                    {% if request.user.is_superuser  %}
+                                    <li class="user-dropdown-menu-item bg-info text-center text-light">
+                                        <a href="/admin" style="color:white; text-decoration:none;">Admin Panel</a>
+                                    </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>

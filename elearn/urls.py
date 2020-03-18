@@ -5,7 +5,7 @@ from django.urls import path, include
 from elearn import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
     path('cart/', include('cart.urls')),
     path('', include('accounts.urls')),
     path('', include('root.urls')),

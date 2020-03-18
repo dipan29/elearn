@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 
 
 from cart.cart import Cart
-from courses.models import Course, Category, Comment
+from courses.models import Course, Category, Comment, Tag
 from root.models import Enroll
 from .forms import CommentForm
 
@@ -40,6 +40,7 @@ class CourseDetailView(DetailView):
         context['comment_form'] = CommentForm()        
         course = self.get_object(self.get_queryset())
         context['comments'] = Comment.objects.filter(course=course).order_by("-created_date")
+        context['tags'] = Tag.objects.filter(course=course)
         if self.request.user.is_authenticated:
             enrollment = Enroll.objects.filter(course=course, user_id=self.request.user.id)
             if enrollment.exists():

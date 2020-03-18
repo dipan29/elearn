@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Enroll
+from .models import Enroll, PageInfo
 # Register your models here.
 class EnrollAdmin(admin.ModelAdmin):
     list_display = ('user', 'course', 'enable_access')
@@ -7,3 +7,4 @@ class EnrollAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Enroll, EnrollAdmin)
+admin.site.register(PageInfo)

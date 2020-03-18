@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'embed_video',
     'ckeditor',
     'ckeditor_uploader',
+    'django_user_agents',
 ]
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
@@ -74,7 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'elearn.urls'

@@ -2,22 +2,53 @@
 {% load embed_video_tags %}
 {% block content %}
 
-<div class="modal fade" id="{{ lesson.title }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="myModalLabel">Lesson {{lesson.title}}</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>
-        <div class="modal-body">
-          {% video lesson.video '480x240' %}
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+{% if request.user_agent.is_mobile %}
+  <div class="modal fade" id="{{ lesson.title }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">{{lesson.title}}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            {% video lesson.video '320x200' %}
+            <div class="container text-secondary">
+              <h5>Lesson content</h5>
+              {{ lesson.description|safe }}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+{% else %}
+  <div class="modal fade" id="{{ lesson.title }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog modal-lg mw-100 w-75" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">{{lesson.title}}</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body text-center">
+            {% if request.user_agent.is_tablet %}
+              {% video lesson.video '540x400' %}
+            {% else %}
+              {% video lesson.video '1200x700' %}
+            {% endif %}
+            <div class="container text-secondary text-left">
+              <h5>Lesson content</h5>
+              {{ lesson.description|safe }}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endif %}
   <script>
    $('.close').on('click', function () {
         $('video').each(function() {

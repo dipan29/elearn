@@ -111,9 +111,17 @@
 
                     <div class="compare-box view-more-parent">
                         <div class="view-more" onclick="viewMore(this)">+ View More</div>
-                        <div class="compare-title">Other Related Courses</div>
+                        <div class="compare-title">Other related courses on</div>
                         <div class="compare-courses-wrap">
-
+                            <div class="row">
+                            {% for tag in tags %}
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                                    <div class="card-header"><a style="text-decoration:none" href="{% url 'courses:course-by-category' tag.category.slug %}">{{ tag.category }}</a></div>
+                                </div>
+                                </div>
+                            {% endfor %}
+                            </div>
                         </div>
                     </div>
 
