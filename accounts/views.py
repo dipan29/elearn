@@ -200,10 +200,16 @@ class ProfileUpdateView(UpdateView):
         return super().dispatch(self.request, *args, **kwargs)
 
     def get_initial(self):
-        return {"first_name": self.request.user.first_name, "last_name": self.request.user.last_name}
+        return {"first_name": self.request.user.first_name, "last_name": self.request.user.last_name, "instagram_link": self.request.user.instagram_link,
+        "facebook_link": self.request.user.facebook_link, "your_niche": self.request.user.your_niche, "address": self.request.user.address,
+        "your_biggest_struggle": self.request.user.your_biggest_struggle, "birth_date": self.request.user.birth_date, "contact_number": self.request.user.contact_number,
+        "are_you_a_social_media_marketeer": self.request.user.are_you_a_social_media_marketeer, "are_you_an_influencer":self.request.user.are_you_an_influencer}
 
     def get_object(self, queryset=None):
         return get_object_or_404(self.model, email=self.request.user.email)
+
+    def check_presence(self, field):
+        return self.get_initial()[field]!=None
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -211,5 +217,14 @@ class ProfileUpdateView(UpdateView):
             obj = self.get_object()
             obj.first_name = self.get_initial()['first_name']
             obj.last_name = self.get_initial()['last_name']
+            obj.instagram_link = self.get_initial()['instagram_link']
+            obj.facebook_link = self.get_initial()['facebook_link']
+            obj.your_niche = self.get_initial()['your_niche']
+            obj.address = self.get_initial()['address']
+            obj.your_biggest_struggle = self.get_initial()['your_biggest_struggle']
+            obj.birth_date = self.get_initial()['birth_date']
+            obj.contact_number = self.get_initial()['contact_number']
+            obj.are_you_a_social_media_marketeer = self.get_initial()['are_you_a_social_media_marketeer']
+            obj.are_you_an_influencer = self.get_initial()['are_you_an_influencer']
             obj.save()
         return super().post(request, *args, **kwargs)

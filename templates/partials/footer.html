@@ -13,7 +13,7 @@
 
 
 <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
+<footer id="footer" class="page-footer font-small blue pt-4" >
 
   <!-- Footer Links -->
   <div class="container-fluid text-center text-md-center" style="font-size:1rem">
@@ -21,7 +21,7 @@
     <!-- Grid row -->
     <div class="row" >
       <!-- Grid column -->
-      <div class="col-md-7  mt-md-0 mt-3">
+      <div class="col-md-4  mt-md-0 mt-3">
         <!-- Content -->
         <h5><span style="  font-size: larger;
                             background: #d6249f;
@@ -35,7 +35,7 @@
       <!-- Grid column -->
       
       <!-- Grid column -->
-      <div class="col-md-2 mb-md-0 mb-3">
+      <div class="col-md-4 mb-md-0 mb-3">
         <!-- Links -->
         <h5>Socials</h5>
 
@@ -70,6 +70,11 @@
             <i class="fab fa-vimeo"> </i>
             </a>
         </li>
+        <hr>
+         <li>
+            <i class="fa fa-envelope-o"> </i>
+            <small><a href="mailto:support@instaworthyacademy.com">support@instaworthyacademy.com</a></small>
+        </li>
         </ul>
 
       </div>
@@ -87,11 +92,21 @@
           <li>
             <a href="{% url 'root:tnc' %}"><small>Terms & Conditions</small></a>
           </li>
+          
+        </ul>
+
+      </div>
+
+       <div class="col-md-1 mb-md-0 mb-3">
+        <!-- Links -->
+
+        <ul class="list-unstyled">
+    
           <li>
             <a href="{% url 'root:privacy' %}"><small>Privacy</small></a>
           </li>
           <li>
-            <a href="{% url 'root:services' %}"><small>Privacy</small></a>
+            <a href="{% url 'root:services' %}"><small>Services</small></a>
           </li>
           <li>
             <a href="{% url 'root:faqs' %}"><small>FAQs</small></a>
@@ -99,6 +114,7 @@
         </ul>
 
       </div>
+
 
     </div>
 

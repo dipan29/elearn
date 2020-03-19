@@ -110,6 +110,9 @@ $(window).scroll(function () {
 
 
 $(document).ready(function(){
+    if(document.body.scrollHeight < window.innerHeight ){
+        $("#footer").addClass("fixed-bottom");
+    }
     //open search form
 	$('.mobile-search-trigger').on('click', function(event){
 		event.preventDefault();
@@ -243,18 +246,6 @@ $(document).ready(function(){
 
 
     //tinymce editor
-    tinymce.init({
-        selector: '.author-biography-editor',
-        menubar: false,
-        statusbar: false,
-        branding: false,
-        toolbar: 'bold  italic'
-    });
-
-
-
-
-
     $('.select2').select2({
         width: 'resolve',
         placeholder: "Type a user's name",

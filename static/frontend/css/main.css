@@ -685,7 +685,7 @@ input:focus {
     line-height: 1.35135;
     font-weight: 600;
     margin-left: 5px !important;
-    border-radius: 10% !important;
+    border-radius: 3px !important;
 }
 
 .sign-in-box .btn-sign-in {
@@ -1017,6 +1017,9 @@ input:focus {
 .home-banner-area {
     background-position: center center;
     background-size: cover;
+    background-image: url(../../images/bg.png),
+                radial-gradient(circle farthest-corner at 35% 90%, #fec56466, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec56466, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf66, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf66, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc266, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc266, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a66, transparent), linear-gradient(#6559ca11, #bc318f66 30%, #e33f5f66 50%, #f7763866 70%, #fec66d66 100%); 
+    background-blend-mode: overlay;
     background-repeat: no-repeat;
     padding: 170px 0 130px;
     color: #fff;

@@ -27,11 +27,25 @@
 
     <section class="cart-list-area">
         <div class="container">
+
+            {% if pay_to %}
+                <div class="alert alert-success alert-dismissable">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    Please pay ${{amount}} at {{pay_to}} to confirm purchase of course, check your email for more info
+                </div>
+            {% endif %}
+
             {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
                     <div class="row" id="cart_items_details">
                         <div class="col-lg-9">
-
+                            {% if discount  %}
+                            <div class="alert alert-success alert-dismissable">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                Received a discount of $<strong>{{ discount }}</strong>
+                            </div>
+                            {% endif %}
+                            
                             <div class="in-cart-box">
                                 <div class="title">{{ total_items }} courses in cart</div>
                                 <div class="">
@@ -86,7 +100,7 @@
                                 <div class="total-price">
                                     $<span id="total_price_of_checking_out">{{ cart.get_total_price }}</span>
                                 </div>
-                                <a href="{% url "cart:cart_checkout" %}" class="btn btn-primary btn-block checkout-btn">Checkout
+                                <a href="{% url "cart:cart_checkout" cart.get_total_price %}" class="btn btn-primary btn-block checkout-btn">Checkout
                                 </a>
                             </div>
                         </div>

@@ -9,6 +9,7 @@
             <div class="row">
                 <div class="col">
                     <div class="user-dashboard-box">
+                        {% if not request.user_agent.is_mobile %}
                         <div class="user-dashboard-sidebar">
                             <div class="user-box">
                                 <img src="{% static 'images/avatar.png' %}" alt="" class="img-fluid">
@@ -29,45 +30,35 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="user-dashboard-content">
+                        {% endif %}
+                        <div class="user-dashboard-content container">
                             <div class="content-title-box">
                                 <div class="title">Profile</div>
                                 <div class="subtitle">Add information about yourself to share on your profile.
                                 </div>
                             </div>
-                            {% if form.errors %}
-                                {% for field in form %}
-                                    {% for error in field.errors %}
-                                        <div class="alert alert-danger alert-dismissable">
-                                            <a href="#" class="close" data-dismiss="alert"
-                                               aria-label="close">&times;</a>
-                                            <strong>{{ error|escape }}</strong>
-                                        </div>
-                                    {% endfor %}
-                                {% endfor %}
-                                {% for error in form.non_field_errors %}
-                                    <div class="alert alert-danger alert-dismissable">
-                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                        <strong>{{ error|escape }}</strong>
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
+                            
                             <hr>
                             <form action="#" method="post">
                                 {% csrf_token %}
-                                <div class="content-box">
-                                    <div class="basic-group">
-                                        <div class="form-group">
-                                            <label for="FirstName">Basics:</label>
-                                            <input type="text" class="form-control" name="first_name" id="FirstName"
-                                                   placeholder="first name" value="{{ user.first_name }}">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="last_name"
-                                                   placeholder="last name" value="{{ user.last_name }}">
-                                        </div>
+                                {% for field in form %}
+                                    <div class="form-group">
+                                        <label for="id_{{ field.name }}">{{ field.label }}</label>
+                                        <input type="{{ field.field.widget.input_type }}"
+                                            class="form-control"
+                                            name="{{ field.name }}"
+                                            id="id_{{ field.name }}"
+                                            placeholder="{{ field.field.widget.attrs.placeholder }}">
                                     </div>
-                                </div>
+                                    {% if form.errors %}
+                                        {% for error in field.errors %}
+                                            <div class="alert alert-danger alert-dismissable">
+                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                <strong>{{ error|escape }}</strong>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
                                 <div class="content-update-box">
                                     <button type="submit" class="btn">Update</button>
                                 </div>

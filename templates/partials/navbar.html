@@ -33,15 +33,15 @@
                             </div>
                         </div>
                     </form>
-
+                    {% if request.user_agent.is_pc %}
                     <div class="cart-box menu-icon-box" id="cart_items">
                         {% include 'partials/cart.html' %}
                     </div>
-
+                    {% endif %}
                     {% if request.user.is_authenticated %}
                         <div class="user-box menu-icon-box">
                             <div class="icon">
-                                <a href="">
+                                <a href="#">
                                     <img src="{% static 'images/avatar.png' %}" alt="" class="img-fluid">
                                 </a>
                             </div>
@@ -86,6 +86,11 @@
                                     <li class="dropdown-user-logout user-dropdown-menu-item">
                                         <a href="{% url 'accounts:logout' %}">Logout</a>
                                     </li>
+                                    {% if request.user_agent.is_mobile or request.user_agent.is_tablet %}
+                                    <li class="dropdown-user-logout user-dropdown-menu-item">
+                                        <a href="{% url 'cart:cart_detail' %}"><i class="fas fa-cart-arrow-down"></i>Cart</a>
+                                    </li>
+                                    {% endif %}
                                     {% if request.user.is_superuser  %}
                                     <li class="user-dropdown-menu-item bg-info text-center text-light">
                                         <a href="/admin" style="color:white; text-decoration:none;">Admin Panel</a>
@@ -101,6 +106,7 @@
                             <a href="{% url 'accounts:login' %}" class="btn btn-sign-in">Login</a>
 
                             <a href="{% url 'accounts:register' %}" class="btn btn-sign-up">Sign up</a>
+
 
                         </div>
                     {% endif %}

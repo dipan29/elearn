@@ -34,6 +34,9 @@ class PageInfo(models.Model):
     linkedin_link = models.CharField(max_length=300, blank=True)
     youtube_link = models.CharField(max_length=300, blank=True)
     vimeo_link = models.CharField(max_length=300, blank=True)
+
+    contact_number = models.CharField(max_length=14, blank=True, help_text="Enter your contact number")
+    payment_id = models.CharField(max_length=300, blank=True, help_text="Enter the payment ID in which you want to get payments")
     
 
     class Meta:
@@ -53,3 +56,12 @@ class Testimonial(models.Model):
     
     def __str__(self):
         return self.title
+
+
+class Discount(models.Model):
+
+    code = models.CharField(max_length=20, help_text="Enter the unique code here e.g COURSELOVE20")
+    value = models.IntegerField(default=0, help_text="Enter discount in percentage")
+
+    def __str__(self):
+        return self.code

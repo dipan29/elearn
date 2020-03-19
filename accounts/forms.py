@@ -77,13 +77,25 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
         return user
 
-
+class DateInput(forms.DateInput):
+    input_type = 'date'
+    
 class ProfileUpdateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["first_name"].widget.attrs.update({'placeholder': 'Enter first name'})
         self.fields["last_name"].widget.attrs.update({'placeholder': 'Enter last name'})
+        self.fields["instagram_link"].widget.attrs.update({'placeholder': 'Enter your Instagram account link'})
+        self.fields["facebook_link"].widget.attrs.update({'placeholder': 'Enter your Facebook account link'})
+        self.fields["your_niche"].widget.attrs.update({'placeholder': 'Tell us about your niche'})
+        self.fields["address"].widget.attrs.update({'placeholder': 'Where do you stay?'})
+        self.fields["your_biggest_struggle"].widget.attrs.update({'placeholder': 'Tell us about your biggest struggle'})
+        self.fields["contact_number"].widget.attrs.update({'placeholder': 'Your contact number'})
+
 
     class Meta:
         model = User
-        fields = ["first_name", "last_name"]
+        fields = ["first_name", "last_name", "instagram_link", "facebook_link", "your_niche", "address", "your_biggest_struggle", "birth_date", "contact_number", "are_you_an_influencer", "are_you_a_social_media_marketeer"]
+        widgets = {
+            'birth_date': DateInput()
+        }

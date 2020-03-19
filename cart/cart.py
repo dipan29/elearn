@@ -2,6 +2,7 @@ from decimal import Decimal
 from django.conf import settings
 
 from courses.models import Course
+from root.models import Discount, PageInfo
 
 
 class Cart(object):
@@ -12,15 +13,20 @@ class Cart(object):
             cart = self.session[settings.CART_SESSION_SLUG] = {}
         self.cart = cart
 
-    def add(self, course, quantity=1, update_quantity=False):
+    def add(self, course, quantity=1, update_quantity=False, discount=0):
         course_slug = str(course.slug)
         if course_slug not in self.cart:
-            self.cart[course_slug] = {'quantity': 0, 'price': str(course.price)}
+            try:
+                discount_value = (Discount.objects.get(code=discount).value*int(course.price))//100
+            except:
+                discount_value = 0
+            self.cart[course_slug] = {'quantity': 0, 'price': str(int(course.price)-discount_value)}
         if update_quantity:
             self.cart[course_slug]['quantity'] = quantity
         else:
             self.cart[course_slug]['quantity'] += quantity
         self.save()
+        return discount_value
 
     def save(self):
         self.session[settings.CART_SESSION_SLUG] = self.cart
