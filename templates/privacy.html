@@ -3,5 +3,9 @@
 {% load static %}
 
 {% block content %}
-Privacy Policy
+    <br><br>
+    <div class="container jumbotron">
+        <h4>Privacy Policy</h4><br><br>
+        {{pageInfo.privacy_policy|safe}}
+    </div>
 {% endblock %}

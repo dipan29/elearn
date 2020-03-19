@@ -1,0 +1,88 @@
+{% load static %}
+
+<style>
+.card {
+  margin: 0 auto;
+}
+.card .carousel-item {
+  height: 10em;
+}
+.card .carousel-caption {
+  padding: 0;
+  right: 0;
+  left: 0;
+  color: #3d3d3d;
+}
+.card .carousel-caption h3 {
+  color: #3d3d3d;
+}
+.card .carousel-caption p {
+  line-height: 30px;
+}
+.card .carousel-caption .col-sm-3 {
+  display: flex;
+  align-items: center;
+}
+.card .carousel-caption .col-sm-9 {
+  text-align: left;
+}
+.card .carousel-control-prev, .card .carousel-control-next {
+  color: #3d3d3d !important;
+  opacity: 1 !important;
+}
+.carousel-caption img{
+  float:right;
+  width:6em;
+}
+@media screen and (max-width: 800px) {
+  .card .carousel-item {
+    height: 15em;
+  }
+  .carousel-caption img{
+    float:left;
+    margin-left:8rem;
+    margin-bottom:1em;
+    width:5em;
+  }
+} 
+
+
+</style>
+        
+<div class="card col-md-6 mt-2">
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="100000">
+        <div class="w-100 carousel-inner" role="listbox">
+
+        {% for testimonial in testimonials %}
+          <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+            <div class="bg"></div>
+            <div class="carousel-caption">
+              <div class="row">
+                <div class="col-lg-4 col-xs-12">
+                {% if testimonial.thumbnail %}
+                  <img src="{{ testimonial.thumbnail.url }}" class="rounded-circle">
+                {% else %}
+                  <img src="{% static 'images/avatar.png' %}" class="rounded-circle">
+                {% endif %}
+                </div>
+                <div class="col-lg-7 col-xs-12">
+                <h5>{{ testimonial.title }}</h5>
+                  <i class="fas fa-quote-left float-left"></i>&nbsp;<small>{{ testimonial.sub_title }}</small>
+                  <small class="smallest mute">- {{ testimonial.name }}</small>&nbsp;<i class="fas fa-quote-right float-justify"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        <a class="carousel-control-prev text-black" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+
+        </a>
+      </div>
+    </div>

@@ -3,5 +3,9 @@
 {% load static %}
 
 {% block content %}
-Terms and Condition
+    <br><br>
+    <div class="container jumbotron">
+        <h4>Terms and Condition</h4><br><br>
+        {{pageInfo.tnc|safe}}
+    </div>
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends 'layouts/base.html' %}
 
 {% load static %}
+{% load total_minutes %}
+
 
 {% block content %}
 
@@ -90,18 +92,18 @@
                                     <div class="course-popover-content">
 
                                         <div class="course-title">
-                                            <a href="#">{{ top_course.title }}</a>
+                                            <a href="{% url 'courses:course-details' top_course.slug %}">{{ top_course.title }}</a>
                                         </div>
                                      
                                         <div class="course-meta">
                                             <span class=""><i class="fas fa-play-circle"></i>
-                                                0 Lessons
+                                                <small><strong>{{ top_course.lessons.count }} lessons</small></strong>
                                             </span>
                                             <span class=""><i class="far fa-clock"></i>
-                                                2 Hours
+                                                <small><strong>{{ top_course.lessons|total_time }} </small></strong>
                                             </span>
                                             <span class="">
-                                                <i class="fas fa-closed-captioning"></i>English
+                                                <i class="fas fa-closed-captioning"></i>{{ top_course.language }}
                                             </span>
                                         </div>
                                         <div class="course-subtitle">{{ top_course.short_description }}</div>
@@ -109,19 +111,6 @@
                                             <ul>
                                                 {{ top_course.outcomes }}
                                             </ul>
-                                        </div>
-                                        <div class="popover-btns">
-                      
-                                            <button type="button"
-                                                    class="btn add-to-cart-btn addedToCart big-cart-button-1"
-                                                    id="1">
-                                                Add To Cart
-                                            </button>
-                                            <button type="button"
-                                                    class="wishlist-btn"
-                                                    title="Add to wishlist"
-                                                    id="1"><i class="fas fa-heart"></i>
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -131,6 +120,15 @@
                 </div>
             </div>
         </div>
+    </section>
+    <section>
+    {% if testimonials %}
+    <div class="jumbotron text-center"style="background-color: #F5F5F5">
+    <h4>Testimonials</h4>
+    <hr style="background-image: linear-gradient(90deg, purple, pink); height:1px; width:75%">
+    {% include 'partials/testimonials.html' with testimonials=testimonials %}
+    </div>
+    {% endif %}
     </section>
 
 {% endblock %}

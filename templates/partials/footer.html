@@ -1,9 +1,113 @@
-
+{% comment %} 
 <br>
 <footer class="page-footer font-small footer-area justify-content-md-center">
-    <div class="col-sm-12 col-md-12 col-lg-1"></div>
-    <div class="col-sm-12 col-md-12 col-lg-1"><a href="{% url 'root:about' %}"><small>About</small></a></div>
-    <div class="col-sm-12 col-md-12 col-lg-1"><a href="{% url 'root:privacy' %}"><small>Privacy Policy</small></a></div>
-    <div class="col-sm-12 col-md-12 col-lg-1"><a href="{% url 'root:tnc' %}"><small>Terms and Condition</small></a></div>
-    <div class="col-sm-12 col-md-12 col-lg-6" id="copyright">© {% now "Y" %} <small>Powered by <a href="https://mindwebs.org"> MinD Webs</small></a></div>
+    <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-3"></div>
+    <div class="col-sm-12 col-md-12 col-lg-3"><a href="{% url 'root:about' %}"><small>About</small></a></div>
+    <div class="col-sm-12 col-md-12 col-lg-3"><a href="{% url 'root:privacy' %}"><small>Privacy Policy</small></a></div>
+    <div class="col-sm-12 col-md-12 col-lg-3"><a href="{% url 'root:tnc' %}"><small>Terms and Condition</small></a></div>
+    <div class="col-sm-12 col-md-12 col-lg-9" id="copyright">© {% now "Y" %} <small>Powered by <a href="https://mindwebs.org"> MinD Webs</small></a></div>
+    </div>
+</footer>  {% endcomment %}
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-center" style="font-size:1rem">
+
+    <!-- Grid row -->
+    <div class="row" >
+      <!-- Grid column -->
+      <div class="col-md-7  mt-md-0 mt-3">
+        <!-- Content -->
+        <h5><span style="  font-size: larger;
+                            background: #d6249f;
+                            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                        ">Insta</span> Worthy Academy</h5>
+        <p>Visit our Socials and get connected !</p>
+
+      </div>
+      <!-- Grid column -->
+      
+      <!-- Grid column -->
+      <div class="col-md-2 mb-md-0 mb-3">
+        <!-- Links -->
+        <h5>Socials</h5>
+
+        <ul class="list-unstyled">
+          <li class="list-inline-item">
+        <a class="btn-floating btn-fb mx-1" href="{{pageInfo.facebook_link}}">
+          <i class="fab fa-facebook-f"> </i>
+        </a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-tw mx-1" href="{{pageInfo.twitter_link}}">
+            <i class="fab fa-twitter"> </i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-instagram mx-1" href="{{pageInfo.instagram_link}}">
+            <i class="fab fa-instagram"> </i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-li mx-1" href="{{pageInfo.linkedin_link}}">
+            <i class="fab fa-linkedin-in"> </i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-youtube mx-1" href="{{pageInfo.youtube_link}}">
+            <i class="fab fa-youtube"> </i>
+            </a>
+        </li>
+        <li class="list-inline-item">
+            <a class="btn-floating btn-vimeo mx-1" href="{{pageInfo.vimeo_link}}">
+            <i class="fab fa-vimeo"> </i>
+            </a>
+        </li>
+        </ul>
+
+      </div>
+
+      <div class="col-md-2 mb-md-0 mb-3">
+        <!-- Links -->
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="{% url 'root:about' %}"><small>About Us</small></a>
+          </li>
+          <li>
+            <a href="{% url 'root:contact' %}"><small>Contact Us</small></a>
+          </li>
+          <li>
+            <a href="{% url 'root:tnc' %}"><small>Terms & Conditions</small></a>
+          </li>
+          <li>
+            <a href="{% url 'root:privacy' %}"><small>Privacy</small></a>
+          </li>
+          <li>
+            <a href="{% url 'root:services' %}"><small>Privacy</small></a>
+          </li>
+          <li>
+            <a href="{% url 'root:faqs' %}"><small>FAQs</small></a>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- Footer Links -->
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© {% now "Y" %}
+    <small>Powered by <a href="https://mindwebs.org"> MinD Webs</small></a>
+  </div>
+  <!-- Copyright -->
 </footer>
+<!-- Footer -->
