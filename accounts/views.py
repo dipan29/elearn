@@ -35,7 +35,7 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return redirect('root:home')
+        return redirect('accounts:my-profile')
     else:
         print('failed')
         return redirect('root:home')
@@ -64,29 +64,23 @@ class RegisterView(CreateView):
 
         if user_form.is_valid():
             user = user_form.save(commit=False)
-            email_valid = validate_email(user.email, verify=True)
-            if(email_valid == None or email_valid!=True):
-                invalid_email = True
-                print("Invalid Email Address")
-                return render(request, 'accounts/form.html', {'form': user_form, 'invalid_email': invalid_email})
+            user.is_active = False
+            password = user_form.cleaned_data.get("password1")
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your Insta Worthy Academy account. Visit the link to activate'
+            message = render_to_string('accounts/account_active_email.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.email)),
+                'token': account_activation_token.make_token(user),
+            })
+            email = send_mail(mail_subject, message, from_email='support@instaworthyacademy.com', recipient_list=[user.email])
+            if email > 0:
+                user.set_password(password)
+                user.save()
+                return redirect('accounts:login')
             else:
-                user.is_active = False
-                password = user_form.cleaned_data.get("password1")
-                current_site = get_current_site(request)
-                mail_subject = 'Activate your Insta Worthy Academy account. Visit the link to activate'
-                message = render_to_string('accounts/account_active_email.html', {
-                    'user': user,
-                    'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(user.email)),
-                    'token': account_activation_token.make_token(user),
-                })
-                email = send_mail(mail_subject, message, from_email='support@instaworthyacademy.com', recipient_list=[user.email])
-                if email > 0:
-                    user.set_password(password)
-                    user.save()
-                    return redirect('accounts:login')
-                else:
-                    return render(request, 'accounts/form.html', {'form': user_form})
+                return render(request, 'accounts/form.html', {'form': user_form})
         else:
             return render(request, 'accounts/form.html', {'form': user_form})
 

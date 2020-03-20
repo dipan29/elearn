@@ -99,7 +99,13 @@
                                                 <small><strong>{{ top_course.lessons.count }} lessons</small></strong>
                                             </span>
                                             <span class=""><i class="far fa-clock"></i>
-                                                <small><strong>{{ top_course.lessons|total_time }} </small></strong>
+                                                <small><strong>
+                                                {% if top_course.lessons.count > 0 %}
+                                                    {{ top_course.lessons|total_time }}
+                                                {% else %}
+                                                    0
+                                                {% endif %}
+                                                </small></strong>
                                             </span>
                                             <span class="">
                                                 <i class="fas fa-closed-captioning"></i>{{ top_course.language }}

@@ -75,8 +75,12 @@
                                                     {{ course.lessons.count }} Lessons
                                                 </span>
                                                 <span class="">
-                                                    <i class="far fa-clock"></i>
-                                                    {{ course.lessons|total_time }}
+                                                <i class="far fa-clock"></i>
+                                                    {% if course.lessons.count > 0 %}
+                                                        {{ course.lessons|total_time }}
+                                                    {% else %}
+                                                        0
+                                                    {% endif %}                                                
                                                 </span>
                                                 <span class="">
                                                     <i class="fas fa-closed-captioning"></i>{{ course.language }}

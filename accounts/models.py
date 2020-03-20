@@ -7,6 +7,7 @@ from accounts.managers import UserManager
 class User(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=50)
+    username = models.CharField(max_length=25, unique=True)
     email = models.EmailField(unique=True, blank=False,
                               error_messages={
                                   'unique': "A user with that email already exists.",
@@ -24,7 +25,7 @@ class User(AbstractUser):
 
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ["username"]
 
     def __str__(self):
         return self.email

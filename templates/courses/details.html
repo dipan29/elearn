@@ -48,7 +48,13 @@
                                    <small><strong>{{ course.lessons.count }} lessons</small></strong>
                                 </span>
                                 <span class="total-time">
-                                   <small><strong>{{ course.lessons|total_time }} </small></strong>
+                                   <small><strong>
+                                        {% if course.lessons.count > 0 %}
+                                            {{ course.lessons|total_time }}
+                                        {% else %}
+                                            0
+                                        {% endif %}
+                                    </small></strong>
                                 </span>
                             </div>
                         </div>
@@ -66,7 +72,14 @@
                                              <small>{{ course.lessons.count }} lessons</small>
                                         </span>
                                         <span class="total-time">
-                                            <small>{{ course.lessons|total_minutes }} minutes</small>
+
+                                            <small>
+                                            {% if course.lessons.count > 0 %}
+                                                {{ course.lessons|total_minutes }} 
+                                            {% else %}
+                                                0
+                                            {% endif %}                                            
+                                            minutes</small>
                                         </span>
                                     </div>
                                 </div>
@@ -238,7 +251,11 @@
                                 <ul>
                                     <li>
                                         <i class="far fa-file-video"></i>
-                                        {{ course.lessons|total_time }} of Runtime
+                                        {% if course.lessons.count > 0 %}
+                                        {{ course.lessons|total_time }}
+                                        {% else %}
+                                        0
+                                        {% endif %} of Runtime
                                     </li>
                                     <li>
                                         <i class="far fa-file"></i> {{ course.lessons.count }} lessons

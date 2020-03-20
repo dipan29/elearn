@@ -33,11 +33,16 @@ def cart_detail(request, last_discount=0):
     context['cart'] = cart
     if(last_discount<0):
         ''' Print the link of paypal/payment to pay, amount to be paid is -1*last_discount'''
-        info = PageInfo.objects.all()[0]
-        context['pay_to'] = info.payment_id
-        context['amount'] = -1*last_discount
-        message = "Please pay $ "+str(context['amount'])+" to the account "+str(context['pay_to'])+" in order to access your course right away, for queries please contact "+str(info.contact_number)
-        send_mail("Payment of $ "+str(context['amount'])+" is due", message , from_email='support@instaworthyacademy.com', recipient_list=[request.user.email])
+        info = PageInfo.objects.all()
+        if(len(info)>0):
+            info = info[0]
+            context['pay_to'] = info.payment_id
+            context['amount'] = -1*last_discount
+            message = "Please pay $ "+str(context['amount'])+" to the account "+str(context['pay_to'])+" in order to access your course right away, for queries please contact "+str(info.contact_number)
+            send_mail("Payment of $ "+str(context['amount'])+" is due", message , from_email='support@instaworthyacademy.com', recipient_list=[request.user.email])
+        else:
+            context['pay_to'] = "Payment Id Uninitialized"
+            context['amount'] = -1*last_discount
     else:
         context['discount'] = last_discount
 
