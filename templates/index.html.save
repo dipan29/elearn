@@ -71,11 +71,11 @@
                         {% for top_course in top_courses %}
 
                             <div class="course-box-wrap">
-                                <a href="{% url 'courses:course-details' top_course.slug %}" {% if not request.user_agent.is_touch_capable %} class="has-popover" {% endif %}>
+                                <a href="{% url 'courses:course-details' top_course.slug %}" class="has-popover">
                                     <div class="course-box">
                                         <div class="course-badge position best-seller">Best seller</div>
                                         <div class="course-image">
-                                            <img style="object-fit:cover; height:200px;" src="{{ top_course.thumbnail.url }}" alt="" class="img-fluid">
+                                            <img style="height: 200px; width: 200px" src="{{ top_course.thumbnail.url }}" alt="" class="img-fluid">
                                         </div>
                                         <div class="course-details">
                                             <h5 class="title">{{ top_course.title }}</h5>
@@ -135,9 +135,6 @@
     </div>
     {% endif %}
     </section>
-
-<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script>
-<script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"ed7309ee6851df9fc4eca3556","lid":"27d0727779","uniqueMethods":true}) })</script>
-
+<script type="text/javascript" src="//downloads.mailchimp.com/js/signup-forms/popup/unique-methods/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">window.dojoRequire(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us19.list-manage.com","uuid":"ed7309ee6851df9fc4eca3556","lid":"27d0727779","uniqueMethods":true}) })</script>
 
 {% endblock %}

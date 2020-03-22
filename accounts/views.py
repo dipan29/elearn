@@ -74,7 +74,7 @@ class RegisterView(CreateView):
                 'uid': urlsafe_base64_encode(force_bytes(user.email)),
                 'token': account_activation_token.make_token(user),
             })
-            email = send_mail(mail_subject, message, from_email='support@instaworthyacademy.com', recipient_list=[user.email])
+            email = send_mail(mail_subject, message, from_email='support.iwa@mindwebs.org', recipient_list=[user.email])
             if email > 0:
                 user.set_password(password)
                 user.save()

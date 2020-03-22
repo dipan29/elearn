@@ -58,7 +58,7 @@ class Lesson(models.Model):
     updated_at = models.DateTimeField(default=now)
 
     def __str__(self):
-        return self.title
+        return self.title+":"+self.course.title
 
 
 class Comment(models.Model):
@@ -66,6 +66,7 @@ class Comment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True) 
     text = models.TextField(max_length=200) 
     created_date = models.DateTimeField(default=timezone.now)
+    
     def __str__(self):
         return self.text
 
@@ -76,6 +77,16 @@ class Tag(models.Model):
     """
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
     def __str__(self):
-        return self.course.title + " " +self.category.title
+        return self.course.title + " " + self.category.title
     
+class Watched(models.Model):
+    """
+    Maps the the user to lessons watched
+    """
+    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.lesson.title + " " + self.user.username

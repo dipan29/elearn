@@ -12,12 +12,14 @@ SECRET_KEY = '32e21k1f8kjn1a2=$x7i=1$=x0@!_c$13xxu^^n(u)3j_js-(k'
 # MAIL Server
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'mindwebs.org'
-EMAIL_HOST_USER = 'notification@mindwebs.org'
-EMAIL_HOST_PASSWORD = 'MI?W0X6(Qz={'
+EMAIL_HOST_USER = 'support.iwa@mindwebs.org'
+EMAIL_HOST_PASSWORD = 'ZigJYHw@Wma'
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = 'support@instaworthyacademy.com'
+
+DEFAULT_FROM_EMAIL = 'Insta Worthy Academy <support.iwa@mindwebs.org>'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 # Application definition
 SUIT_CONFIG = {
@@ -152,8 +154,10 @@ handler404 = 'root.views.handler404'
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-ALLOWED_HOSTS = ['localhost', '*']
+
+# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = '/var/apps/iwa/elearn/staticfiles'
+ALLOWED_HOSTS = ['localhost', 'instaworthyacademy.com', '.instaworthyacademy.com', '115.187.32.210', '139.59.18.132']
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [

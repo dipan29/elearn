@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Course, Lesson, Comment, Tag
+from .models import Category, Course, Lesson, Comment, Tag, Watched
 
 class LessonAdmin(admin.ModelAdmin):
     list_display = ('title', 'course',)
@@ -31,4 +31,5 @@ admin.site.register(Course, CourseAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(Tag, TagAdmin)
+admin.site.register(Watched)
 

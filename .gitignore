@@ -1,5 +1,6 @@
 .idea
 iwa
+db2.sqlite3
 ### Django ###
 *.log
 *.pot

@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseForbidden
+from django.http import Http404, HttpResponseForbidden, HttpResponse
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, FormView
 from django.views import View
@@ -10,7 +10,8 @@ from django.urls import reverse_lazy
 
 
 from cart.cart import Cart
-from courses.models import Course, Category, Comment, Tag
+from accounts.models import User
+from courses.models import Course, Category, Comment, Tag, Watched, Lesson
 from root.models import Enroll
 from .forms import CommentForm
 
@@ -108,3 +109,15 @@ class CoursesByCategoryListView(ListView):
         context['category'] = category
         context['categories'] = Category.objects.all()
         return context
+
+
+# Helper view to mark lesson viewed by a user
+def mark_watched(request, lessonid, username):
+    lesson = Lesson.objects.get(id=lessonid)
+    user = User.objects.get(username=username)
+    if(Watched.objects.filter(lesson=lesson).filter(user=user)):
+        return HttpResponse("Already Watched")
+    else:
+        watched = Watched(lesson=lesson, user=user)
+        watched.save()
+        return HttpResponse("Marked Watched")
