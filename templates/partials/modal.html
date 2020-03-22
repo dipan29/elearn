@@ -49,11 +49,24 @@
       </div>
     </div>
 {% endif %}
-  <script>
+  
+{% endblock %}
+{% block scripts %}
+<script>
    $('.close').on('click', function () {
         $('video').each(function() {
           this.player.pause();
         });
     })
+    $('#id{{ lesson.id }}').on('click', function(){
+        console.log("Clicked");
+        $.ajax({
+            url: "{% url 'courses:mark_watched' lesson.id user.username %}",
+            type: "GET",
+            success: ()=>{
+              $("#icon{{ lesson.id }}").html("✔️");
+            }
+        });
+    });
   </script>
-{% endblock %}
+{% endblock%}

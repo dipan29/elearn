@@ -2,7 +2,7 @@
 {% load static %}
 {% load total_minutes %}
 {% load embed_video_tags %}
-
+{% load watched %}
 
 {% block content %}
     <section class="course-header-area">
@@ -87,11 +87,17 @@
                                 <div id="collapse" class="lecture-list collapse">
                                     <ul>
                                         {% for lesson in course.lessons.all %}
-                                            <li class="lecture has-preview">
-                                                <span data-toggle="modal" data-target="#{{ lesson.title }}" data-id="{{ lesson.title }}" href="#myModal" class="lecture-title">{{ lesson.title }}</span>
+                                            <li class="lecture has-preview" id="id{{ lesson.id }}">
+                                                <span data-toggle="modal" data-target="#{{ lesson.title }}" data-id="{{ lesson.title }}" href="#myModal" class="lecture-title">
+                                                {{ lesson.title }}
+                                                </span> 
+                                                {% if is_enrolled and has_access %}
+                                                    <span id="icon{{ lesson.id }}">{% has_watched lesson request.user %}</span>
+                                                {% endif %} 
+                                                                    
                                                 <span class="lecture-time float-right"><small>{{ lesson.duration }} mins</small></span>
                                                 {% if has_access %}
-                                                {% include 'partials/modal.html' with lesson=lesson %}
+                                                    {% include 'partials/modal.html' with lesson=lesson user=request.user %}
                                                 {% endif %}
                                             </li>
                                         {% endfor %}
