@@ -38,8 +38,12 @@ def cart_detail(request, last_discount=0):
             info = info[0]
             context['pay_to'] = info.payment_id
             context['amount'] = -1*last_discount
-            message = "Please pay $ "+str(context['amount'])+" to the account "+str(context['pay_to'])+" in order to access your course right away, for queries please contact "+str(info.contact_number)
-            send_mail("Payment of $ "+str(context['amount'])+" is due", message , from_email='support.iwa@mindwebs.org', recipient_list=[request.user.email])
+            # message = "Please pay $ "+str(context['amount'])+" to the account "+str(context['pay_to'])+" in order to access your course right away, for queries please contact "+str(info.contact_number)
+            message = "Hello,<br />Thank you for deciding to purchase our course. <br/>To get full access to the course and it's benefits, please make the payment of $" + str(context['amount']) + " shown during check out to "+ str(context['pay_to']) + " through PayPal, Goods&Services. <br />In the note, please include the following details in this format :"
+            message += "<br />Your Name - Name of the Course.<br /><br />Failure to do so, please reply to this mail immediately with the mail id you paid through. <br />You will receive an Invoice of the payment and complete access to our courses once we have confirmed your payment."
+            message += "<br />Note : It may take a bit of time to confirm the payment and give you access, but it will be done before 24 hours.<br /><br />Meanwhile, you can check out our Facebook Group - https://www.facebook.com/groups/2580480742199538/ and engage with the other group members!";
+            message += "<br />For any further queries please mail to support@instaworthyacademy.com"
+            send_mail("IWA | Payment of $ "+str(context['amount'])+" is Due", message , from_email='support.iwa@mindwebs.org', recipient_list=[request.user.email])
         else:
             context['pay_to'] = "Payment Id Uninitialized"
             context['amount'] = -1*last_discount
