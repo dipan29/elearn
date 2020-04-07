@@ -67,13 +67,15 @@ class RegisterView(CreateView):
             user.is_active = False
             password = user_form.cleaned_data.get("password1")
             current_site = get_current_site(request)
-            mail_subject = 'Activate your Insta Worthy Academy account. Visit the link to activate'
-            message = render_to_string('accounts/account_active_email.html', {
+            mail_subject = 'Activate your Instaworthy Academy Account'
+            message = "Hey!<br /><br />Follow this link to verify your email and activate your account!"
+            message += render_to_string('accounts/account_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.email)),
                 'token': account_activation_token.make_token(user),
             })
+            message += "<br />Thanks for joining us!<br /><br />- Insta Worthy Academy"
             email = send_mail(mail_subject, message, from_email='support.iwa@mindwebs.org', recipient_list=[user.email])
             if email > 0:
                 user.set_password(password)
