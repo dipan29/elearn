@@ -21,7 +21,7 @@ class User(AbstractUser):
     contact_number = models.CharField(max_length=200, blank=True, null=True)
 
     are_you_an_influencer = models.BooleanField(default=False)
-    are_you_a_social_media_marketeer = models.BooleanField(default=False)
+    are_you_a_brand = models.BooleanField(default=False)
 
 
     USERNAME_FIELD = "email"

@@ -95,7 +95,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ["first_name", "last_name", "instagram_link", "facebook_link", "your_niche", "address", "your_biggest_struggle", "birth_date", "contact_number", "are_you_an_influencer", "are_you_a_social_media_marketeer"]
+        fields = ["first_name", "last_name", "instagram_link", "facebook_link", "your_niche", "address", "your_biggest_struggle", "birth_date", "contact_number", "are_you_an_influencer", "are_you_a_brand"]
         widgets = {
             'birth_date': DateInput()
         }

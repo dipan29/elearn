@@ -198,7 +198,7 @@ class ProfileUpdateView(UpdateView):
         return {"first_name": self.request.user.first_name, "last_name": self.request.user.last_name, "instagram_link": self.request.user.instagram_link,
         "facebook_link": self.request.user.facebook_link, "your_niche": self.request.user.your_niche, "address": self.request.user.address,
         "your_biggest_struggle": self.request.user.your_biggest_struggle, "birth_date": self.request.user.birth_date, "contact_number": self.request.user.contact_number,
-        "are_you_a_social_media_marketeer": self.request.user.are_you_a_social_media_marketeer, "are_you_an_influencer":self.request.user.are_you_an_influencer}
+        "are_you_a_brand": self.request.user.are_you_a_brand, "are_you_an_influencer":self.request.user.are_you_an_influencer}
 
     def get_object(self, queryset=None):
         return get_object_or_404(self.model, email=self.request.user.email)
@@ -219,7 +219,7 @@ class ProfileUpdateView(UpdateView):
             obj.your_biggest_struggle = self.get_initial()['your_biggest_struggle']
             obj.birth_date = self.get_initial()['birth_date']
             obj.contact_number = self.get_initial()['contact_number']
-            obj.are_you_a_social_media_marketeer = self.get_initial()['are_you_a_social_media_marketeer']
+            obj.are_you_a_brand = self.get_initial()['are_you_a_brand']
             obj.are_you_an_influencer = self.get_initial()['are_you_an_influencer']
             obj.save()
         return super().post(request, *args, **kwargs)
