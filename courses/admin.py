@@ -31,5 +31,5 @@ admin.site.register(Course, CourseAdmin)
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(Lesson, LessonAdmin)
 admin.site.register(Tag, TagAdmin)
-admin.site.register(Watched)
+# admin.site.register(Watched)
 

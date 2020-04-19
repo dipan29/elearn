@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load widget_tweaks %}
 
 {% load static %}
 
@@ -39,16 +40,12 @@
                             </div>
                             
                             <hr>
-                            <form action="#" method="post">
+                            <form action="" method="post">
                                 {% csrf_token %}
                                 {% for field in form %}
                                     <div class="form-group">
-                                        <label for="id_{{ field.name }}">{{ field.label }}</label>
-                                        <input type="{{ field.field.widget.input_type }}"
-                                            class="form-control"
-                                            name="{{ field.name }}"
-                                            id="id_{{ field.name }}"
-                                            placeholder="{{ field.field.widget.attrs.placeholder }}">
+                                        <label for="id_{{ field.name }}">{{ field.label }}</label><br>
+                                        {% render_field field class="form-control" %}
                                     </div>
                                     {% if form.errors %}
                                         {% for error in field.errors %}
@@ -60,7 +57,7 @@
                                     {% endif %}
                                 {% endfor %}
                                 <div class="content-update-box">
-                                    <button type="submit" class="btn">Update</button>
+                                <button type="submit" class="btn">Update</button>
                                 </div>
                             </form>
                         </div>

@@ -10,20 +10,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '32e21k1f8kjn1a2=$x7i=1$=x0@!_c$13xxu^^n(u)3j_js-(k'
 
 # MAIL Server
+
+COMPANY_NAME = "Institute of Academic Excellence"
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'mindwebs.org'
 EMAIL_HOST_USER = 'support.iwa@mindwebs.org'
 EMAIL_HOST_PASSWORD = 'ZigJYHw@Wma'
 EMAIL_PORT = 587
-
 DEFAULT_FROM_EMAIL = 'Insta Worthy Academy <support.iwa@mindwebs.org>'
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
+# DEBUG = False
 
 # Application definition
 SUIT_CONFIG = {
-    'ADMIN_NAME': 'Insta Worthy Academy',
+    'ADMIN_NAME': COMPANY_NAME,
     # 'HEADER_DATE_FORMAT': 'l, j. F Y',
     # 'HEADER_TIME_FORMAT': 'H:i',
     
@@ -66,7 +67,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'django_user_agents',
-]
+    'widget_tweaks',
+    ]
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [

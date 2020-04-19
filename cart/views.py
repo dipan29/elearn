@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
 
-
 from courses.models import Course
 from root.models import Enroll, PageInfo
 from .cart import Cart
@@ -42,7 +41,7 @@ def cart_detail(request, last_discount=0):
             message = "Hello,\nThank you for deciding to purchase our course. \nTo get full access to the course and it's benefits, please make the payment of $" + str(context['amount']) + " shown during check out to "+ str(context['pay_to']) + " through PayPal, Goods&Services. \nIn the note, please include the following details in this format :"
             message += "\nYour Name - Name of the Course.\n\nFailure to do so, please reply to this mail immediately with the mail id you paid through. \nYou will receive an Invoice of the payment and complete access to our courses once we have confirmed your payment."
             message += "\nNote : It may take a bit of time to confirm the payment and give you access, but it will be done before 24 hours.\n\nMeanwhile, you can check out our Facebook Group - https://www.facebook.com/groups/2580480742199538/ and engage with the other group members!";
-            message += "\n\nFor any further queries please mail to support@instaworthyacademy.com"
+            message += "\n\nFor any further queries please mail to "+str(info.email)
             send_mail("IWA | Payment of $ "+str(context['amount'])+" is Due", message , from_email='support.iwa@mindwebs.org', recipient_list=[request.user.email])
         else:
             context['pay_to'] = "Payment Id Uninitialized"

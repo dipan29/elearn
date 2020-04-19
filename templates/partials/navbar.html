@@ -12,14 +12,8 @@
                     </ul>
 
                     <a class="navbar-brand" href="/">
-                        <img src= "{% static 'images/logo.png' %}" alt="" height="30">
-                        <span style="
-                            font-size: larger;
-                            background: #d6249f;
-                            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-                            -webkit-background-clip: text;
-                            -webkit-text-fill-color: transparent;
-                        ">Insta</span> Worthy Academy
+                        <img src= "{% static 'images/logo.png' %}" alt="" height="45">
+                        {{ pageInfo.title }}
                     </a>
 
                     {% include 'partials/menu.html' %}
@@ -74,7 +68,7 @@
                                         </a>
                                     </li>
                                     <li class="user-dropdown-menu-item">
-                                        <a href="https://www.facebook.com/groups/2580480742199538?group_view_referrer=instaworthyacademy">
+                                        <a href="{{pageInfo.facebook_link}}">
                                             <i class="far fa-heart"></i>Join Facebook Group
                                         </a>
                                     </li>

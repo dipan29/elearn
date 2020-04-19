@@ -1,27 +1,31 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from datetime import datetime
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from accounts.managers import UserManager
 
+YEAR = [(str(r), str(r)) for r in range(datetime.now().year-5, datetime.now().year+5)]
+DEPT = [(d, d) for d in ['ECE', 'EEE/EE', 'AEIE', 'CSE', 'IT', 'ME', 'CE', 'CHEM', 'BT', 'FT', 'OTHER']]
 
 class User(AbstractUser):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=50)
+    parent_name = models.CharField(max_length=150, blank=True, null=True)
     username = models.CharField(max_length=25, unique=True)
     email = models.EmailField(unique=True, blank=False,
                               error_messages={
                                   'unique': "A user with that email already exists.",
                               })
-    instagram_link = models.CharField(max_length=200, blank=True, null=True)
-    facebook_link = models.CharField(max_length=200, blank=True, null=True)
-    your_niche = models.CharField(max_length=200, blank=True, null=True)
+    contact_number = models.CharField(max_length=15, blank=True, null=True)
+    whatsApp_number = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=200, blank=True, null=True)
-    your_biggest_struggle = models.CharField(max_length=200, blank=True, null=True)
-    birth_date = models.DateField(blank=True, null=True )
-    contact_number = models.CharField(max_length=200, blank=True, null=True)
+    graduation_year_of_BTech = models.CharField(choices=YEAR, max_length=5, default=datetime.now().year+2)
 
-    are_you_an_influencer = models.BooleanField(default=False)
-    are_you_a_brand = models.BooleanField(default=False)
+    name_of_your_college = models.CharField(max_length=200, blank=True, null=True)
+    your_deparment_of_study = models.CharField(choices=DEPT, max_length=5, blank=True, null=True)
+    class_12_mark_in_percentage = models.FloatField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    average_SGPA_till_last_published_semester = models.FloatField(default=0, validators=[MinValueValidator(0), MaxValueValidator(10)])
 
 
     USERNAME_FIELD = "email"

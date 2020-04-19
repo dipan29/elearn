@@ -23,13 +23,8 @@
       <!-- Grid column -->
       <div class="col-md-4  mt-md-0 mt-3">
         <!-- Content -->
-        <h5><span style="  font-size: larger;
-                            background: #d6249f;
-                            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
-                            -webkit-background-clip: text;
-                            -webkit-text-fill-color: transparent;
-                        ">Insta</span> Worthy Academy</h5>
-        <p>Visit our Socials and get connected !</p>
+        <h5>{{ pageInfo.title|safe }}</h5>
+        <p>{{ pageInfo.home_banner|safe}}</p>
 
       </div>
       <!-- Grid column -->
@@ -73,7 +68,7 @@
         <hr>
          <li>
             <i class="fa fa-envelope-o"> </i>
-            <small><a href="mailto:support@instaworthyacademy.com">support@instaworthyacademy.com</a></small>
+            <small><a href="mailto:{{pageInfo.email}}">{{pageInfo.email}}</a></small>
         </li>
         </ul>
 

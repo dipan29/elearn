@@ -31,7 +31,7 @@
             {% if pay_to %}
                 <div class="alert alert-success alert-dismissable">
                     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    Please pay ${{amount}} at {{pay_to}} to confirm purchase of course, check your email for more info
+                    Please pay {{ pageInfo.currency }}{{amount}} at {{pay_to}} to confirm purchase of course, check your email for more info
                 </div>
             {% endif %}
 
@@ -42,7 +42,7 @@
                             {% if discount  %}
                             <div class="alert alert-success alert-dismissable">
                                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                Received a discount of $<strong>{{ discount }}</strong>
+                                Received a discount of {{ pageInfo.currency }}<strong>{{ discount }}</strong>
                             </div>
                             {% endif %}
                             
@@ -98,7 +98,7 @@
                             <div class="cart-sidebar">
                                 <div class="total">Total:</div>
                                 <div class="total-price">
-                                    $<span id="total_price_of_checking_out">{{ cart.get_total_price }}</span>
+                                    {{ pageInfo.currency }}<span id="total_price_of_checking_out">{{ cart.get_total_price }}</span>
                                 </div>
                                 <a href="{% url "cart:cart_checkout" cart.get_total_price %}" class="btn btn-primary btn-block checkout-btn">Checkout
                                 </a>

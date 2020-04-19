@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import User
+from .models import User, YEAR, DEPT
 
 
 class UserLoginForm(forms.Form):
@@ -30,7 +30,7 @@ class UserLoginForm(forms.Form):
             if self.user is None:
                 raise forms.ValidationError("User Does Not Exist.")
             if not self.user.check_password(password):
-                raise forms.ValidationError("Password Does not Match.")
+                raise forms.ValidationError("Passwords does not match.")
             if not self.user.is_active:
                 raise forms.ValidationError("Account is not active yet. Please check your email and confirm your email address")
 
@@ -49,6 +49,8 @@ class UserRegistrationForm(UserCreationForm):
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Enter Last Name'})
         self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
+        self.fields["whatsApp_number"].widget.attrs.update({'placeholder': 'Enter your WhatsApp number'})
+        self.fields["contact_number"].widget.attrs.update({'placeholder': 'Your contact number'})
         self.fields['password1'].widget.attrs.update({'placeholder': 'Enter password'})
         self.fields['password2'].widget.attrs.update({'placeholder': 'Again password'})
 
@@ -59,7 +61,9 @@ class UserRegistrationForm(UserCreationForm):
                   "last_name",
                   "email",
                   "password1",
-                  "password2")
+                  "password2",
+                  "contact_number",
+                  "whatsApp_number")
 
     def clean_email(self):
         email = self.cleaned_data['email']
@@ -77,25 +81,33 @@ class UserRegistrationForm(UserCreationForm):
             user.save()
         return user
 
-class DateInput(forms.DateInput):
-    input_type = 'date'
     
 class ProfileUpdateForm(forms.ModelForm):
+
+    graduation_year_of_BTech = forms.ChoiceField(choices=YEAR, required=False)
+    your_deparment_of_study = forms.ChoiceField(choices=DEPT, required=False)
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["first_name"].widget.attrs.update({'placeholder': 'Enter first name'})
         self.fields["last_name"].widget.attrs.update({'placeholder': 'Enter last name'})
-        self.fields["instagram_link"].widget.attrs.update({'placeholder': 'Enter your Instagram account link'})
-        self.fields["facebook_link"].widget.attrs.update({'placeholder': 'Enter your Facebook account link'})
-        self.fields["your_niche"].widget.attrs.update({'placeholder': 'Tell us about your niche'})
-        self.fields["address"].widget.attrs.update({'placeholder': 'Where do you stay?'})
-        self.fields["your_biggest_struggle"].widget.attrs.update({'placeholder': 'Tell us about your biggest struggle'})
+        self.fields["parent_name"].widget.attrs.update({'placeholder': 'Enter the name of your guardian'})
+        self.fields["whatsApp_number"].widget.attrs.update({'placeholder': 'Enter your WhatsApp number'})
+        self.fields["address"].widget.attrs.update({'placeholder': 'Please mention your address / locality in brief'})
+        self.fields["name_of_your_college"].widget.attrs.update({'placeholder': 'Name of the College / University you are admitted to'})
         self.fields["contact_number"].widget.attrs.update({'placeholder': 'Your contact number'})
 
 
     class Meta:
         model = User
-        fields = ["first_name", "last_name", "instagram_link", "facebook_link", "your_niche", "address", "your_biggest_struggle", "birth_date", "contact_number", "are_you_an_influencer", "are_you_a_brand"]
-        widgets = {
-            'birth_date': DateInput()
-        }
+        fields = ["first_name",
+            "last_name",
+            "parent_name",
+            "contact_number", 
+            "whatsApp_number", 
+            "address", 
+            "name_of_your_college", 
+            "graduation_year_of_BTech", 
+            "your_deparment_of_study",
+            "average_SGPA_till_last_published_semester",  
+            "class_12_mark_in_percentage"]

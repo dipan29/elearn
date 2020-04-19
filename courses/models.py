@@ -13,6 +13,11 @@ from accounts.models import User
 class Category(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=200, unique=True)
+    
+    
+    class Meta:
+        verbose_name = "Category"
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.title
@@ -32,11 +37,11 @@ class Course(models.Model):
     outcome = models.CharField(max_length=200, help_text="Outcome/Achievements after successful completion of the course")
     requirements = models.CharField(max_length=200, help_text="Prequisites for enroll in the Course")
     language = models.CharField(max_length=200, help_text="Medium/Languages used in the lesson videos")
-    price = models.FloatField(validators=[MinValueValidator(9.99)], help_text="Price of the course, to be entered in International Currency")
+    price = models.FloatField(validators=[MinValueValidator(9.99)], help_text="Price of the course, to be entered set Currency")
     level = models.CharField(max_length=20, help_text="Level can be, 1/2/3 or Beginner/Intermidiate/Advance")
     thumbnail = models.ImageField(upload_to='thumbnails/', help_text="This field expects an image file, 480x360 is ideal")
     video = EmbedVideoField(max_length=500, blank=True, help_text="Enter the link to the video from any streaming platform, Vimeo Preffered")
-    is_published = models.BooleanField(default=True, help_text="Only set this to False, when the course is under making and you wish not to make it public")
+    is_published = models.BooleanField(default=True, help_text="Only set this to True, when the course has finished making and you wish to make it public")
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(default=now, help_text="Updating course regularly ensures better reach")
 

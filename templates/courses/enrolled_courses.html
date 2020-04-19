@@ -10,9 +10,7 @@
                     <h1 class="page-title">My Courses</h1>
                     <ul>
                         <li class="active"><a href="">All courses</a></li>
-                        <li>
-                            <a href="">Wish lists</a>
-                        </li>
+                        <li><a href="">Wishlists</a></li>
                     </ul>
                 </div>
             </div>
@@ -100,14 +98,10 @@
 {% endblock %}
 
 {% block scripts %}
-
     <script>
-
         function courseModal(course_id) {
             {#alert($course_id);#}
             $('#course_id_for_rating').val(course_id);
         }
-
     </script>
-
 {% endblock %}

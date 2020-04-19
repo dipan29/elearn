@@ -43,7 +43,8 @@
                 <br>
                 <input class="btn btn-success" type="submit" value='{{ title }}'>&nbsp; &nbsp;
                 {% if request.path == "/login" %}
-                    Don't Have an Account <a href="{% url 'accounts:register' %}">Register Here.</a>
+                    <a href="{% url 'accounts:password_reset' %}"> Forgot Password ? </a><br><br>
+                    <p>Don't Have an Account <a href="{% url 'accounts:register' %}">Register Here.</a></p>
                 {% else %}
                     Have an Account <a href="{% url 'accounts:login' %}">Login Here.</a>
                 {% endif %}

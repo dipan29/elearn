@@ -195,10 +195,10 @@ class ProfileUpdateView(UpdateView):
         return super().dispatch(self.request, *args, **kwargs)
 
     def get_initial(self):
-        return {"first_name": self.request.user.first_name, "last_name": self.request.user.last_name, "instagram_link": self.request.user.instagram_link,
-        "facebook_link": self.request.user.facebook_link, "your_niche": self.request.user.your_niche, "address": self.request.user.address,
-        "your_biggest_struggle": self.request.user.your_biggest_struggle, "birth_date": self.request.user.birth_date, "contact_number": self.request.user.contact_number,
-        "are_you_a_brand": self.request.user.are_you_a_brand, "are_you_an_influencer":self.request.user.are_you_an_influencer}
+        return {"first_name": self.request.user.first_name, "last_name": self.request.user.last_name, "parent_name": self.request.user.parent_name,
+        "whatsApp_number": self.request.user.whatsApp_number, "name_of_your_college": self.request.user.name_of_your_college, "address": self.request.user.address,
+        "your_deparment_of_study": self.request.user.your_deparment_of_study, "graduation_year_of_BTech": self.request.user.graduation_year_of_BTech, "contact_number": self.request.user.contact_number,
+        "class_12_mark_in_percentage": self.request.user.class_12_mark_in_percentage, "average_SGPA_till_last_published_semester":self.request.user.average_SGPA_till_last_published_semester}
 
     def get_object(self, queryset=None):
         return get_object_or_404(self.model, email=self.request.user.email)
@@ -212,14 +212,14 @@ class ProfileUpdateView(UpdateView):
             obj = self.get_object()
             obj.first_name = self.get_initial()['first_name']
             obj.last_name = self.get_initial()['last_name']
-            obj.instagram_link = self.get_initial()['instagram_link']
-            obj.facebook_link = self.get_initial()['facebook_link']
-            obj.your_niche = self.get_initial()['your_niche']
+            obj.parent_name = self.get_initial()['parent_name']
+            obj.whatsApp_number = self.get_initial()['whatsApp_number']
+            obj.name_of_your_college = self.get_initial()['name_of_your_college']
             obj.address = self.get_initial()['address']
-            obj.your_biggest_struggle = self.get_initial()['your_biggest_struggle']
-            obj.birth_date = self.get_initial()['birth_date']
+            obj.your_deparment_of_study = self.get_initial()['your_deparment_of_study']
+            obj.graduation_year_of_BTech = self.get_initial()['graduation_year_of_BTech']
             obj.contact_number = self.get_initial()['contact_number']
-            obj.are_you_a_brand = self.get_initial()['are_you_a_brand']
-            obj.are_you_an_influencer = self.get_initial()['are_you_an_influencer']
+            obj.class_12_mark_in_percentage = self.get_initial()['class_12_mark_in_percentage']
+            obj.average_SGPA_till_last_published_semester = self.get_initial()['average_SGPA_till_last_published_semester']
             obj.save()
         return super().post(request, *args, **kwargs)
