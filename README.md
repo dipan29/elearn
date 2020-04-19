@@ -2,12 +2,11 @@
 Institute of Academic Excellence Online Learning Platform
 <hr />
 
-on course list page having issues with images and all   ✅
-play video box not auto sizing to the video  ✅
-multiple demo field add feature  
-change password add feature instead of reset password (keep both)  ✅
-change profile page and add these features from this form  ✅
-https://goo.gl/forms/8HwD0l2gZ7JLSaIJ3  ✅
+-[]on course list page having issues with images and all   ✅
+-[]play video box not auto sizing to the video  ✅
+-[]multiple demo field add feature  
+-[]change password add feature instead of reset password (keep both)  ✅
+-[]change profile page and add these features from this form https://goo.gl/forms/8HwD0l2gZ7JLSaIJ3  ✅
 
 make coupon codes course specific, I guess that is better than global. Also allow global or course wise.  ✅
 
