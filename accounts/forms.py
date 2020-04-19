@@ -49,8 +49,8 @@ class UserRegistrationForm(UserCreationForm):
         self.fields['last_name'].widget.attrs.update({'placeholder': 'Enter Last Name'})
         self.fields['username'].widget.attrs.update({'placeholder': 'Username'})
         self.fields['email'].widget.attrs.update({'placeholder': 'Email'})
-        self.fields["whatsApp_number"].widget.attrs.update({'placeholder': 'Enter your WhatsApp number'})
-        self.fields["contact_number"].widget.attrs.update({'placeholder': 'Your contact number'})
+        self.fields['whatsApp_number'].widget.attrs.update({'placeholder': 'Enter your WhatsApp number'})
+        self.fields['contact_number'].widget.attrs.update({'placeholder': 'Your contact number'})
         self.fields['password1'].widget.attrs.update({'placeholder': 'Enter password'})
         self.fields['password2'].widget.attrs.update({'placeholder': 'Again password'})
 

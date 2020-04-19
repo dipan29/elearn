@@ -9,6 +9,7 @@ from django.core.mail import send_mail
 from courses.models import Course
 from root.models import Enroll, PageInfo
 from .cart import Cart
+from elearn.settings import COMPANY_NAME, COMPANY_EMAIL
 
 @require_POST
 @login_required(login_url=reverse_lazy('accounts:login'))
@@ -38,11 +39,12 @@ def cart_detail(request, last_discount=0):
             context['pay_to'] = info.payment_id
             context['amount'] = -1*last_discount
             # message = "Please pay $ "+str(context['amount'])+" to the account "+str(context['pay_to'])+" in order to access your course right away, for queries please contact "+str(info.contact_number)
-            message = "Hello,\nThank you for deciding to purchase our course. \nTo get full access to the course and it's benefits, please make the payment of $" + str(context['amount']) + " shown during check out to "+ str(context['pay_to']) + " through PayPal, Goods&Services. \nIn the note, please include the following details in this format :"
-            message += "\nYour Name - Name of the Course.\n\nFailure to do so, please reply to this mail immediately with the mail id you paid through. \nYou will receive an Invoice of the payment and complete access to our courses once we have confirmed your payment."
-            message += "\nNote : It may take a bit of time to confirm the payment and give you access, but it will be done before 24 hours.\n\nMeanwhile, you can check out our Facebook Group - https://www.facebook.com/groups/2580480742199538/ and engage with the other group members!";
-            message += "\n\nFor any further queries please mail to "+str(info.email)
-            send_mail("IWA | Payment of $ "+str(context['amount'])+" is Due", message , from_email='support.iwa@mindwebs.org', recipient_list=[request.user.email])
+            message = """Hello,\nThank you for deciding to purchase our course. \nTo get full access to the course and it's benefits, please make the payment of {} {} shown during check out to {} through PayPal, Goods&Services. \nIn the note, please include the following details in this format :
+                \nYour Name - Name of the Course.\n\nFailure to do so, please reply to this mail immediately with the mail id you paid through. \nYou will receive an Invoice of the payment and complete access to our courses once we have confirmed your payment.
+                \nNote : It may take a bit of time to confirm the payment and give you access, but it will be done before 24 hours.\n\nMeanwhile, you can check out our Facebook Group - https://www.facebook.com/groups/2580480742199538/ and engage with the other group members!
+                \n\nFor any further queries please mail to {} """.format(str(info.currency), str(context['amount']), str(context['pay_to']), COMPANY_EMAIL)
+                
+            send_mail(COMPANY_NAME+" | Payment of $ "+str(context['amount'])+" is Due", message , from_email=COMPANY_EMAIL, recipient_list=[request.user.email])
         else:
             context['pay_to'] = "Payment Id Uninitialized"
             context['amount'] = -1*last_discount

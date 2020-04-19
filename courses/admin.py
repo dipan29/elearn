@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Course, Lesson, Comment, Tag, Watched
+from .models import Category, Course, Lesson, Comment, Tag
 
 class LessonAdmin(admin.ModelAdmin):
     list_display = ('title', 'course',)
@@ -24,6 +24,7 @@ class CommentAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ('category', 'course',)
     list_filter = ('course', 'category')
+
 
 
 admin.site.register(Category, CategoryAdmin)

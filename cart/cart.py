@@ -17,6 +17,7 @@ class Cart(object):
         course_slug = str(course.slug)
         if course_slug not in self.cart:
             try:
+                discount = Discount.objects.get(course=course, code=discount )
                 discount_value = (Discount.objects.get(code=discount).value*int(course.price))//100
             except:
                 discount_value = 0

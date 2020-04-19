@@ -7,11 +7,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '32e21k1f8kjn1a2=$x7i=1$=x0@!_c$13xxu^^n(u)3j_js-(k'
+SECRET_KEY = '32e41k1f8fjn1b2=$x7i=1$=x0@!_c$13xxu^^n(u)3j_js-(k'
 
 # MAIL Server
 
+# Configure this for the template and mailing
 COMPANY_NAME = "Institute of Academic Excellence"
+COMPANY_EMAIL = "support.iwa@mindwebs.org"
+
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'mindwebs.org'
 EMAIL_HOST_USER = 'support.iwa@mindwebs.org'

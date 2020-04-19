@@ -21,7 +21,7 @@ from .forms import UserRegistrationForm, UserLoginForm, ProfileUpdateForm
 
 from .tokens import account_activation_token
 from validate_email import validate_email
-
+from elearn.settings import COMPANY_NAME, COMPANY_EMAIL
 
 
 def activate(request, uidb64, token):
@@ -67,15 +67,15 @@ class RegisterView(CreateView):
             user.is_active = False
             password = user_form.cleaned_data.get("password1")
             current_site = get_current_site(request)
-            mail_subject = 'Activate your Instaworthy Academy Account'
+            mail_subject = '{} | Account Activation Link'.format(COMPANY_NAME)
             message = render_to_string('accounts/account_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
                 'uid': urlsafe_base64_encode(force_bytes(user.email)),
                 'token': account_activation_token.make_token(user),
             })
-            message += "\n\nThanks for joining us!\n\n- Insta Worthy Academy"
-            email = send_mail(mail_subject, message, from_email='support.iwa@mindwebs.org', recipient_list=[user.email])
+            message += "\n\nThanks for joining us!\n\n- "+COMPANY_NAME
+            email = send_mail(mail_subject, message, from_email=COMPANY_EMAIL, recipient_list=[user.email])
             if email > 0:
                 user.set_password(password)
                 user.save()

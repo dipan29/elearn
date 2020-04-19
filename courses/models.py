@@ -29,7 +29,7 @@ class Category(models.Model):
 
 class Course(models.Model):
     title = models.CharField(max_length=200)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     slug = models.SlugField(max_length=200, unique=True, primary_key=True, auto_created=False)
     short_description = models.TextField(blank=False, max_length=60)
@@ -52,13 +52,12 @@ class Course(models.Model):
         self.slug = slugify(self.title)
         super(Course, self).save(*args, **kwargs)
 
-
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
     title = models.CharField(max_length=100, help_text="Enter the Lesson's title")
     description = RichTextField(help_text="Enter the entire lesson outflow just like you would in a word document", default="Follow the lesson")
     duration = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(1000)], help_text="Enter video clip duration in Minutes")
-    video = EmbedVideoField(max_length=500, blank=True, help_text="Vimeo Video is preffered since it ensure data protection")
+    video = EmbedVideoField(max_length=500, blank=True, help_text="Vimeo Video is preffered since it ensure video data protection")
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(default=now)
 
