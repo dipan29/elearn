@@ -2,14 +2,14 @@
 Institute of Academic Excellence Online Learning Platform
 <hr />
 
-on course list page having issues with images and all  
-play video box not auto sizing to the video  
+on course list page having issues with images and all   ✅
+play video box not auto sizing to the video  ✅
 multiple demo field add feature  
-change password add feature instead of reset password (keep both)  
-change profile page and add these features from this form  
-https://goo.gl/forms/8HwD0l2gZ7JLSaIJ3  
+change password add feature instead of reset password (keep both)  ✅
+change profile page and add these features from this form  ✅
+https://goo.gl/forms/8HwD0l2gZ7JLSaIJ3  ✅
 
-make coupon codes course specific, I guess that is better than global. Also allow global or course wise.  
+make coupon codes course specific, I guess that is better than global. Also allow global or course wise.  ✅
 
 
 * multi-level directory of category (Course (GATE) -> ECE, this much)  
@@ -23,7 +23,7 @@ Basically on course cart, just send a notification to pay.
 and if the admin approves mane the enroll then ekta sms jabey approved. Will show the APIs, easy.  
 
 
-* databse targetted front page (Site Title, Description, Image, Gradient Points, Site Logo & and the three meta datas)  
+* databse targetted front page (Site Title, Description, Image, Gradient Points, Site Logo & and the three meta datas)  ✅
 
 META DESCRIPTION , FB & Twitter Cards -> you missed this last time  
 
