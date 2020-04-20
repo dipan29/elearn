@@ -4,6 +4,7 @@
     <ul class="mobile-main-nav">
         <div class="mobile-menu-helper-top"></div>
 
+        
         <li class="has-children">
             <a href="">
                 <i class="fas fa-th d-inline"></i>
@@ -16,9 +17,9 @@
                     <a href=""><i class="fas fa-angle-left"></i>Menu</a>
                 </li>
 
-                {% for category in categories %}
+                {% for category in master_categories %}
                     <li>
-                        <a href="{% url 'courses:course-by-category' category.slug %}">
+                        <a href="{% url 'root:home' category.slug %}">
                             <span class="icon"><i class="fa fa-caret-right"></i></span>
                             <span>{{ category.title }}</span>
                         </a>
@@ -26,7 +27,6 @@
                 {% endfor %}
             </ul>
         </li>
-
         <div class="mobile-menu-helper-bottom"></div>
     </ul>
 </div>

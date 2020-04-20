@@ -60,9 +60,50 @@
 
     <section class="course-carousel-area">
         <div class="container-lg">
+        {% if no_slug %}
             <div class="row">
                 <div class="col">
-                    <h2 class="course-carousel-title">Top Courses</h2>
+                <h1 style="color:#aaaaaa; text-align:center;padding:1em">Choose your learning path</h1>
+                <div class="course-carousel">
+                    {% for cat in m_categories %}
+                    <div class="course-box-wrap">
+                        <a href="{% url 'root:home' cat.slug %}">
+                            <div class="course-box">
+                                <div class="course-image">
+                                    <img style="object-fit:cover; height:200px;" src="{% static 'images/morty.jpg' %}" alt="" class="img-fluid">
+                                </div>
+                                <div class="course-details">
+                                    <h5 class="title text-center">{{ cat.title }}</h5>                                    
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                </div>
+            </div>        
+        {% else %}
+            <div class="row">
+                <div class="col">
+                <h2 style="color:#aaaaaa; text-align:center;padding:0.7em">Choose your track</h2>
+                <div class="course-carousel">
+                    {% for cat in sub_categories %}
+                    <div class="course-box-wrap">
+                        <a href="{% url 'courses:course-by-category' cat.slug %}">
+                            <div class="course-box">
+                                <div class="course-details">
+                                    <h5 class="title text-center">{{ cat.title }}</h5>                                    
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                </div>
+            </div>        
+            <div class="row">
+                <div class="col">
+                <h2 style="color:#aaaaaa; text-align:center;padding:0.7em">Popular Courses</h2>
                     <div class="course-carousel">
                         {% for top_course in top_courses %}
 
@@ -120,6 +161,7 @@
                     </div>
                 </div>
             </div>
+        {% endif %}
         </div>
     </section>
     <section>

@@ -9,11 +9,25 @@ from django.utils import timezone
 
 from accounts.models import User
 
+class MasterCategory(models.Model):
+    title = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=200, unique=True)
+
+    class Meta:
+        verbose_name = "Master Category"
+        verbose_name_plural = "Master Categories"
+    
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(MasterCategory, self).save(*args, **kwargs)
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
+    master_category = models.ForeignKey(MasterCategory, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(max_length=200, unique=True)
-    
     
     class Meta:
         verbose_name = "Category"

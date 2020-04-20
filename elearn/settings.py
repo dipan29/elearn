@@ -100,6 +100,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # custom
                 'courses.context_processors.categories_processor',
+                'courses.context_processors.master_categories_processor',
                 'cart.context_processors.cart',
                 'root.context_processors.info_processor'
             ],

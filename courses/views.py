@@ -11,7 +11,7 @@ from django.urls import reverse_lazy
 
 from cart.cart import Cart
 from accounts.models import User
-from courses.models import Course, Category, Comment, Tag, Watched, Lesson
+from courses.models import Course, MasterCategory, Category, Comment, Tag, Watched, Lesson
 from root.models import Enroll
 from .forms import CommentForm
 

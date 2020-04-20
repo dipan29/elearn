@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 
-from courses.models import Course, Category
+from courses.models import Course, Category, MasterCategory
 from .models import Testimonial, PageInfo
 
 
@@ -16,7 +16,18 @@ class HomeListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['top_courses'] = self.model.objects.all().order_by('?')
+        try:
+            slug = self.kwargs['slug']
+        except:
+            slug = None
+        if(slug):
+            m_category = MasterCategory.objects.get(slug=slug)
+            categories = Category.objects.filter(master_category=m_category)
+            context['top_courses'] = self.model.objects.filter(category__in=categories).order_by('?')
+            context['sub_categories'] = categories
+        else:
+            context['no_slug'] = True
+            context['m_categories'] = MasterCategory.objects.all()
         context['testimonials'] = Testimonial.objects.all()
         return context
 
