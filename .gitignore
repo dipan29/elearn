@@ -1,6 +1,6 @@
 .idea
-iwa
-# *.sqlite3
+iae
+*.sqlite3
 # db_bak.sqlite3
 ### Django ###
 *.log
