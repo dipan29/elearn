@@ -1,7 +1,7 @@
 .idea
-iwa
+iae
 *.sqlite3
-db_bak.sqlite3
+# db_bak.sqlite3
 ### Django ###
 *.log
 *.pot

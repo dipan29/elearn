@@ -13,14 +13,14 @@ SECRET_KEY = '32e41k1f8fjn1b2=$x7i=1$=x0@!_c$13xxu^^n(u)3j_js-(k'
 
 # Configure this for the template and mailing
 COMPANY_NAME = "Institute of Academic Excellence"
-COMPANY_EMAIL = "support.iwa@mindwebs.org"
+COMPANY_EMAIL = "notification@mindwebs.org"
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'mindwebs.org'
-EMAIL_HOST_USER = 'support.iwa@mindwebs.org'
-EMAIL_HOST_PASSWORD = 'ZigJYHw@Wma'
+EMAIL_HOST_USER = 'notification@mindwebs.org'
+EMAIL_HOST_PASSWORD = 'MI?W0X6(Qz={'
 EMAIL_PORT = 587
-DEFAULT_FROM_EMAIL = 'Insta Worthy Academy <support.iwa@mindwebs.org>'
+DEFAULT_FROM_EMAIL = 'IAE Kolkata <notification@mindwebs.org>'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # DEBUG = False
@@ -163,7 +163,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_ROOT = '/var/apps/iwa/elearn/staticfiles'
-ALLOWED_HOSTS = ['localhost', 'instaworthyacademy.com', '.instaworthyacademy.com', '115.187.32.210', '139.59.18.132']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '139.59.18.132', 'etutor.iaegroup.in']
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
