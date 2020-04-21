@@ -52,21 +52,32 @@
   
 {% endblock %}
 {% block scripts %}
-<script>
+{% if lesson.is_demo %}
+  <script>
    $('.close').on('click', function () {
         $('video').each(function() {
           this.player.pause();
         });
     })
-    $('#id{{ lesson.id }}').on('click', function(){
-        console.log("Clicked");
-        $.ajax({
-            url: "{% url 'courses:mark_watched' lesson.id user.username %}",
-            type: "GET",
-            success: ()=>{
-              $("#icon{{ lesson.id }}").html("✔️");
-            }
-        });
-    });
   </script>
+{% else %}
+  <script>
+    $('.close').on('click', function () {
+          $('video').each(function() {
+            this.player.pause();
+          });
+      })
+      $('#id{{ lesson.id }}').on('click', function(){
+          console.log("Clicked");
+          $.ajax({
+              url: "{% url 'courses:mark_watched' lesson.id user.username %}",
+              type: "GET",
+              success: ()=>{
+                $("#icon{{ lesson.id }}").html("✔️");
+              }
+          });
+      });
+  </script>
+{% endif %}
+
 {% endblock%}

@@ -76,6 +76,7 @@ class Lesson(models.Model):
     video = EmbedVideoField(max_length=500, blank=True, help_text="Vimeo Video is preffered since it ensure video data protection")
     created_at = models.DateTimeField(default=now)
     updated_at = models.DateTimeField(default=now)
+    is_demo = models.BooleanField(default=False, help_text="Check the bullet point if it is a demo lesson")
 
     def __str__(self):
         return self.title+":"+self.course.title
