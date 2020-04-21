@@ -11,6 +11,7 @@ from accounts.models import User
 
 class MasterCategory(models.Model):
     title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='master_category_images/', help_text="Choose a Category Image", null=True, blank=True)
     slug = models.SlugField(max_length=200, unique=True)
 
     class Meta:
@@ -26,6 +27,7 @@ class MasterCategory(models.Model):
 
 class Category(models.Model):
     title = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='category_images/', help_text="Choose a Category Image", null=True, blank=True)
     master_category = models.ForeignKey(MasterCategory, on_delete=models.CASCADE, null=True)
     slug = models.SlugField(max_length=200, unique=True)
     

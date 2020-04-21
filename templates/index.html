@@ -60,6 +60,12 @@
 
     <section class="course-carousel-area">
         <div class="container-lg">
+        {% if pageInfo.news %}
+        <div class="alert alert-warning alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            {{ pageInfo.news}}
+        </div>
+        {% endif %}
         {% if no_slug %}
             <div class="row">
                 <div class="col">
@@ -69,9 +75,11 @@
                     <div class="course-box-wrap">
                         <a href="{% url 'root:home' cat.slug %}">
                             <div class="course-box">
-                                <div class="course-image">
-                                    <img style="object-fit:cover; height:200px;" src="{% static 'images/morty.jpg' %}" alt="" class="img-fluid">
-                                </div>
+                                {% if cat.image %}
+                                <img style="object-fit:cover; height:190px;" src="{{cat.image.url}}" alt="" class="img-fluid">
+                                {% else %}
+                                <img style="object-fit:cover; height:190px;" src="{% static 'images/learning.jpg' %}" alt="" class="img-fluid">
+                                {% endif %}
                                 <div class="course-details">
                                     <h5 class="title text-center">{{ cat.title }}</h5>                                    
                                 </div>
@@ -93,7 +101,15 @@
                             <div class="col my-4 mx-1">
                                 <a href="{% url 'courses:course-by-category' cat.slug %}">
                                     <h5 class="title text-center">{{ cat.title }}</h5>
+                                    <div class="course-image">
+                                    {% if cat.image %}
+                                    <img style="object-fit:cover; height:190px;" src="{{cat.image.url}}" alt="" class="img-fluid"><br>
+                                    {% else %}
+                                    <img style="object-fit:cover; height:190px;" src="{% static 'images/learning.jpg' %}" alt="" class="img-fluid"><br>
+                                    {% endif %}
+                                </div>
                                 </a>
+                                
                                 <form class="form-inline" action="{% url 'cart:cart_add_bundle' cat.slug %}" method="post">
                                     {% csrf_token %}
                                     <input class="form-control" type="text" placeholder="Discount Code" name="discount">

@@ -17,7 +17,7 @@ register_converter(NegativeIntConverter, 'sint')
 app_name = 'cart'
 
 urlpatterns = [
-    path('<sint:last_discount>/<int:courses_added>', views.cart_detail, name='cart_detail'),
+    path('<sint:last_discount>/<int:invalid>', views.cart_detail, name='cart_detail'),
     path('', views.cart_detail, name='cart_detail'),
     path('add/bundle/<slug:slug>/', views.cart_add_bundle, name='cart_add_bundle'),
     path('add/<slug:slug>/', views.cart_add, name='cart_add'),

@@ -31,6 +31,8 @@ class PageInfo(models.Model):
     email = models.CharField(max_length=100, default="Email not set", help_text="Enter your company/support email")
     currency = models.CharField(max_length=20, default="₹")
     home_banner = RichTextField(max_length=2000, default="The flashy tagline goes here", help_text="Enter the tagline in the home banner")
+    news = models.CharField(max_length=300, default="Welcome! Discover your learning track, you may contact us for great discounts",
+                             help_text="All lastest news here", null=True, blank=True)
     tag_1 = RichTextField(max_length=500, default="Your homepage Tagline 1 goes here !", help_text="You fancy webpage features must go in here")
     tag_2 = RichTextField(max_length=500, default="Your homepage Tagline 2 goes here !", help_text="You fancy webpage features must go in here")
     tag_3 = RichTextField(max_length=500, default="Your homepage Tagline 3 goes here !", help_text="You fancy webpage features must go in here")

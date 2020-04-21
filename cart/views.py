@@ -22,12 +22,10 @@ def cart_add_bundle(request, slug):
         discount = Discount.objects.get(category=category, code=request.POST.get('discount')).value
     except:
         discount = 0
-    courses_added = 0
     for course in courses:
         if not Enroll.objects.filter(course=course, user_id=request.user.id).exists():
-            courses_added += 1
             discounted_value += cart.add(course=course, quantity=1, update_quantity=False, discount=discount)
-    return redirect('cart:cart_detail', last_discount=discounted_value , courses_added = courses_added)
+    return redirect('cart:cart_detail', last_discount=discounted_value, invalid=len(str(request.POST.get('discount'))))
 
 @require_POST
 @login_required(login_url=reverse_lazy('accounts:login'))
@@ -35,7 +33,7 @@ def cart_add(request, slug):
     cart = Cart(request)
     course = get_object_or_404(Course, slug=slug)
     discount_value = cart.add(course=course, quantity=1, update_quantity=False, discount=request.POST.get('discount'))
-    return redirect('cart:cart_detail', last_discount=discount_value, courses_added = 1)
+    return redirect('cart:cart_detail', last_discount=discount_value, invalid=len(str(request.POST.get('discount'))))
 
 def cart_remove(request, slug):
     cart = Cart(request)
@@ -44,11 +42,13 @@ def cart_remove(request, slug):
     return redirect('cart:cart_detail')
 
 
-def cart_detail(request, last_discount=0, courses_added=0):
+def cart_detail(request, last_discount=0, invalid=0):
     cart = Cart(request)
     context = {}
     context['cart'] = cart
-    if(last_discount<0 or courses_added>0):
+
+    # Displays after checkout successful
+    if(last_discount<0):
         ''' Print the link of paypal/payment to pay, amount to be paid is -1*last_discount'''
         info = PageInfo.objects.all()
         if(len(info)>0):
@@ -66,19 +66,18 @@ def cart_detail(request, last_discount=0, courses_added=0):
             context['pay_to'] = "Payment Id Uninitialized"
             context['amount'] = -1*last_discount
     else:
-        context['discount'] = last_discount
+        context['discount'] = "invalid" if(invalid!=0 and last_discount==0) else last_discount
+        print("Discount->",last_discount)
 
     return render(request, 'cart/detail.html', context)
 
 
 def cart_checkout(request, amount):
     carts = Cart(request)
-    courses_added = 0
     for cart in carts:
         course = cart['course']
-        courses_added += 1
         # course = get_object_or_404(Course, slug=course.slug)
         Enroll.objects.create(course=course, user_id=request.user.id)
     messages.success(request, 'Successfully checked out!')
     carts.clear()
-    return redirect('cart:cart_detail', last_discount=-1*amount, courses_added=courses_added)
+    return redirect('cart:cart_detail', last_discount=-1*amount, invalid=0)

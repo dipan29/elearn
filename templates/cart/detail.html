@@ -34,18 +34,24 @@
                     Please pay {{ pageInfo.currency }}{{amount}} at {{pay_to}} to confirm purchase of course, check your email for more info
                 </div>
             {% endif %}
+            {% if discount %}
+                {% if discount == 'invalid' %}
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        Sorry the discount coupon you have applied is either invalid or has been expired
+                    </div>
+                {% else %}
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        Received a discount of {{ pageInfo.currency }}<strong>{{ discount }}</strong>
+                    </div>
+                {% endif %}
+            {% endif %}
 
             {% with total_items=cart|length %}
                 {% if cart|length > 0 %}
                     <div class="row" id="cart_items_details">
                         <div class="col-lg-9">
-                            {% if discount  %}
-                            <div class="alert alert-success alert-dismissable">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                Received a discount of {{ pageInfo.currency }}<strong>{{ discount }}</strong>
-                            </div>
-                            {% endif %}
-                            
                             <div class="in-cart-box">
                                 <div class="title">{{ total_items }} courses in cart</div>
                                 <div class="">
