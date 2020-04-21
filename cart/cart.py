@@ -15,10 +15,15 @@ class Cart(object):
 
     def add(self, course, quantity=1, update_quantity=False, discount=0):
         course_slug = str(course.slug)
+        discount_value = 0
         if course_slug not in self.cart:
             try:
-                discount = Discount.objects.get(course=course, code=discount )
-                discount_value = (Discount.objects.get(code=discount).value*int(course.price))//100
+                if(str(discount).isnumeric()):
+                    value = (int(course.price)*discount)//100
+                else:
+                    discont = Discount.objects.get(course=course, code=discount)
+                    value = (Discount.objects.get(code=discount).value*int(course.price))//100
+                discount_value += value
             except:
                 discount_value = 0
             self.cart[course_slug] = {'quantity': 0, 'price': str(int(course.price)-discount_value)}

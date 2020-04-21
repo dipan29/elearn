@@ -88,14 +88,19 @@
                 <h2 style="color:#aaaaaa; text-align:center;padding:0.7em">Choose your track</h2>
                 <div class="course-carousel">
                     {% for cat in sub_categories %}
-                    <div class="course-box-wrap">
-                        <a href="{% url 'courses:course-by-category' cat.slug %}">
-                            <div class="course-box">
-                                <div class="course-details">
-                                    <h5 class="title text-center">{{ cat.title }}</h5>                                    
-                                </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col my-4 mx-1">
+                                <a href="{% url 'courses:course-by-category' cat.slug %}">
+                                    <h5 class="title text-center">{{ cat.title }}</h5>
+                                </a>
+                                <form class="form-inline" action="{% url 'cart:cart_add_bundle' cat.slug %}" method="post">
+                                    {% csrf_token %}
+                                    <input class="form-control" type="text" placeholder="Discount Code" name="discount">
+                                    <button class="btn btn-add-cart m-2" type="submit" id="cart">Buy the entire Course</button>
+                                </form>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>

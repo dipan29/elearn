@@ -18,7 +18,7 @@
                             </li>
                             <li class="breadcrumb-item">
                                 <a href="#">
-                                    {{ category.title }} 
+                                    {{ category.title }}
                                 </a>
                             </li>
                         </ol>
@@ -26,12 +26,6 @@
                     <h1 class="category-name">
                         {{ category.title }}
                     </h1>
-                    <small> Don't miss the opportunity, Buy the entire course</small>
-                     <form class="form-inline" action="{% url 'cart:cart_add_bundle' category.slug %}" method="post">
-                                    {% csrf_token %}
-                                    <input class="form-control" type="text" placeholder="Discount Code" name="discount">
-                                    <button class="btn btn-add-cart m-2" type="submit" id="cart">Buy the entire Course</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -46,7 +40,7 @@
 
                         <div class="btn-group category-list">
                             <a class="btn btn-outline-secondary dropdown-toggle" href="#" data-toggle="dropdown">
-                                Category List
+                                Choose your field of interest
                             </a>
                             <div class="dropdown-menu">
                                 {% for category in categories %}

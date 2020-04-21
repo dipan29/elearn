@@ -3,7 +3,7 @@ from django.utils.timezone import now
 from ckeditor.fields import RichTextField
 
 from accounts.models import User
-from courses.models import Course
+from courses.models import Course, Category
 from elearn.settings import COMPANY_NAME
 
 
@@ -73,8 +73,8 @@ class Testimonial(models.Model):
 class Discount(models.Model):
 
     code = models.CharField(max_length=20, help_text="Enter the unique code here e.g COURSELOVE20")
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
-    # bundle = models.ForeignKey(Bundle, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     value = models.IntegerField(default=0, help_text="Enter discount in percentage")
 
     def __str__(self):
